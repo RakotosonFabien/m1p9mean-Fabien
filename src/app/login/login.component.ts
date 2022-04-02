@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ws_url } from '../../environments/environment';
+import { type_user, ws_url } from '../../environments/environment';
 import { ToolsService } from '../services/tools.service';
 import { TypeUtilisateurService } from '../services/type-utilisateur.service';
 
@@ -17,15 +17,39 @@ export class LoginComponent implements OnInit {
     this.loadUtilisateur();
     this.loginPostUrl = ws_url + "login"
   }
+  //
+  urlLogin(type_utilisateur : string) {
+    var lien : string = '';
+    switch (type_utilisateur) {
+      case type_user.user_client :
+        lien = 'index-client'
+        break
+      case type_user.user_resto :
+        lien = 'index-resto'
+        break
+      case type_user.user_ekaly :
+        lien = 'index-ekaly'
+        break
+      case type_user.user_livreur :
+        lien = 'index-livreur'
+        break
+      default:
+        break
+    }
+    return lien;
+  }
+  //login
   login(data : any) {
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
+        localStorage.setItem('token', response['data']['token'])
+        localStorage.setItem('id_type_u', response['data']['id_type_u'])
+        var url = this.urlLogin(response['data']['id_type_u'])
+        this.router.navigateByUrl(url)
       } else {
-        // status 400
-        console.warn(response)
+        
       }
     }
-    //fail
     const onError = (response: any) => {
       console.log("err");
     }

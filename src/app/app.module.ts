@@ -9,6 +9,10 @@ import { QuoteComponent } from './quote/quote.component';
 import { LoginComponent } from './login/login.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { FormsModule } from '@angular/forms';
+import { IndexRestoComponent } from './index-resto/index-resto.component';
+import { IndexClientComponent } from './index-client/index-client.component';
+import { IndexEkalyComponent } from './index-ekaly/index-ekaly.component';
+import { IndexLivreurComponent } from './index-livreur/index-livreur.component';
 
 
 @NgModule({
@@ -16,7 +20,11 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     QuoteComponent,
     LoginComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    IndexRestoComponent,
+    IndexClientComponent,
+    IndexEkalyComponent,
+    IndexLivreurComponent
   ],
   imports: [
     BrowserModule,
