@@ -1,22 +1,22 @@
 <div class="container">
   <hr>
-  <form (ngSubmit)="login()">
+  <form #loginPost="ngForm" (ngSubmit)="login(loginPost.value)">
     <div class="row">
       <div class="mb-3">
         <label for="email" class="form-label">Adresse email</label>
-        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+        <input name ="email" type="email" class="form-control" id="email" placeholder="name@example.com">
       </div>
     </div>
     <div class="row">
       <div class="mb-3">
         <label for="mdp" class="form-label">Mot de passe</label>
-        <input type="password" class="form-control" id="mdp" placeholder="Mot de passe">
+        <input name="mdp" type="password" class="form-control" id="mdp" placeholder="Mot de passe">
       </div>
     </div>
     <div class="row">
       <div class="mb-3">
         <label for="type_user" class="form-label">Type utilisateur</label>
-        <select id="type_user" class="form-select form-control" aria-label="Default select example">
+        <select name="id_type_u" id="id_type_u" class="form-select form-control" aria-label="Default select example">
           <option *ngFor="let type_user of type_utilisateur" [value]="type_user._id">{{type_user.nom}}</option>
         </select>
       </div>

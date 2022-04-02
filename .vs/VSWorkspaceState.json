@@ -2,15 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\bin",
-    "\\src",
-    "\\src\\app",
-    "\\src\\app\\inscription",
-    "\\src\\app\\login",
-    "\\src\\app\\quote",
-    "\\src\\app\\services",
-    "\\src\\assets",
-    "\\src\\environments"
+    "\\classes"
   ],
-  "SelectedNode": "\\src\\app\\inscription\\inscription.component.ts",
+  "SelectedNode": "\\classes\\WsRenderer.js",
   "PreviewInSolutionExplorer": false
 }

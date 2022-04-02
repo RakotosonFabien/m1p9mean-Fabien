@@ -11,7 +11,9 @@ var corsOptions = {
 app.use(cors(corsOptions))
 app.use(bodyParser.urlencoded({ extended: true }));
 require('./dotenv')
+//myClasses
 const Utilisateur = require('./classes/Utilisateur')
+const WsRenderer = require('./classes/WsRenderer')
 // Replace process.env.DB_URL with your actual connection string
 const connectionString = process.env.DB_URL;
 MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client => {
@@ -103,7 +105,21 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   app.post('/login', (req, res) => {
     var utilisateur = new Utilisateur()
     utilisateur.construct_data(req.body)
-
+    var testLogin = utilisateur.testLogin(db)
+    testLogin.then(function (auth) {
+      console.log('Putain de merde ==> ' + auth.auth_utilisateur[0].token)
+      var wsRenderer
+      if (auth != null) {
+        wsRenderer = new WsRenderer("Login success", 200, {
+          token: auth.auth_utilisateur[0].token,
+          id_type_u: auth.id_type_u
+        })
+      }
+      else {
+        wsRenderer = new WsRenderer("Login failed", 400)
+      }
+      res.json(wsRenderer.jsonReturn())
+    })
   })
   //clients
   app.get('/clients', (req, res) => {

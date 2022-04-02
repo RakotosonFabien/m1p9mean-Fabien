@@ -1,5 +1,6 @@
 var md5 = require('md5');
 const Constantes = require('./Constantes');
+const {ObjectId} = require('mongodb');
 let Utilisateur = class {
   constructor(_id, nom, adresse, supprime, id_type_u, email, mdp) {
   //constructor() {
@@ -9,21 +10,32 @@ let Utilisateur = class {
     this.adresse = data.adresse;
     this.mdp = data.mdp;
     this.email = data.email;
+    this.id_type_u = data.id_type_u
   }
+
   //login test
-  testLogin(req, res, db) {
-    authCollection = client.db.collection('auth_utilisateur');
-    var utilisateur = autoCollection.find({
-      mdp: this.cryptMdp(this.mdp),
-      email : this.email
+  testLogin(db) {
+    var authCollection = db.collection('user_complet')
+    console.log(this.id_type_u)
+    const auth = authCollection.findOne({
+      id_type_u: ObjectId(this.id_type_u),
+      "auth_utilisateur.email": this.email,
+      "auth_utilisateur.mdp" : this.cryptMdp(this.mdp)
     })
-    return utilisateur.token
+    
+    if (auth != null) {
+      return auth
+    }
+    else {
+      return null
+    }
   }
+  
   saltedMdp(mdp) {
-    return "MyPassword" + mdp + Date.now()+"Russia"
+    return "MyPassword" + mdp +"RussiaMadagascar"
   }
   cryptMdp(mdp) {
-    return md5(this.saltedMdp())
+    return md5(this.saltedMdp(mdp))
   }
 
   saltedToken() {
@@ -42,17 +54,18 @@ let Utilisateur = class {
       nom: this.nom,
       adresse: this.adresse,
       supprime: false,
-      id_type_u: Constantes.typeClient()
+      id_type_u: ObjectId(Constantes.typeClient())
     }
     var token= this.createToken()
     userCollection.insertOne(userBody).then(result => {
       this._id = result.insertedId
+      var cryptedMdp = this.cryptMdp(this.mdp)
       var authBody = {
-        mdp: this.cryptMdp(this.mdp),
+        mdp: cryptedMdp,
         email: this.email,
         token: token,
         date_token: Date.now(),
-        id_user: this._id.toString()
+        id_user: ObjectId(this._id)
       }
       authCollection.insertOne(authBody).then(result => {
         console.log("Auth inserted");

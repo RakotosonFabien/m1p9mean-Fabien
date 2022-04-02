@@ -22,9 +22,7 @@ export class InscriptionComponent implements OnInit {
   }
 
   public inscriptionClient(data : any) {
-    console.log("Inscription du client");
     console.warn(data);
-    //success
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
         this.router.navigateByUrl('login');
@@ -33,7 +31,6 @@ export class InscriptionComponent implements OnInit {
         console.warn(response)
       }
     }
-    //fail
     const onError = (response: any) => {
       console.log("err");
     }

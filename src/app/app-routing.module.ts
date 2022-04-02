@@ -6,6 +6,9 @@ import { QuoteComponent } from './quote/quote.component';
 
 const routes: Routes = [
   {
+    path: '', component: LoginComponent
+  },
+  {
     path: 'quotes', component: QuoteComponent
   },
   {
