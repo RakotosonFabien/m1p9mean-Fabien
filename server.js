@@ -133,6 +133,13 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
     utilisateur.construct_data(req.body)
     utilisateur.insertClient(req, res, db);
   })
+
+  //admin
+  app.post('/admin', (req, res) => {
+    var utilisateur = new Utilisateur()
+    utilisateur.construct_data(req.body)
+    utilisateur.insertAdmin(req, res, db);
+  })
 //ending routes
 })
 

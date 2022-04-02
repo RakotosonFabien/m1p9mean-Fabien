@@ -79,6 +79,38 @@ let Utilisateur = class {
     });
   }
 
+  //inserer
+  insertAdmin(req, res, db) {
+    var userCollection = db.collection('utilisateurs');
+    var authCollection = db.collection('auth_utilisateur');
+    var userBody = {
+      nom: this.nom,
+      adresse: this.adresse,
+      supprime: false,
+      id_type_u: ObjectId(Constantes.typeAdmin())
+    }
+    var token = this.createToken()
+    userCollection.insertOne(userBody).then(result => {
+      this._id = result.insertedId
+      var cryptedMdp = this.cryptMdp(this.mdp)
+      var authBody = {
+        mdp: cryptedMdp,
+        email: this.email,
+        token: token,
+        date_token: new Date(),
+        id_user: ObjectId(this._id)
+      }
+      authCollection.insertOne(authBody).then(result => {
+        console.log("Auth inserted");
+      }).catch(error => console.error(error))
+    }).catch(error => console.error(error))
+    res.json({
+      meta: {
+        msg: 'User created',
+        status: 200
+      }
+    });
+  }
 }
 module.exports = Utilisateur;
 
