@@ -1,0 +1,35 @@
+<div class="container">
+  <hr>
+  <form #userPost="ngForm" (ngSubmit)="inscriptionClient(userPost.value)">
+    <div class="row">
+      <div class="mb-3">
+        <label for="nom" class="form-label">Nom</label>
+        <input name="nom" type="text" class="form-control" id="nom" placeholder="Nom" ngModel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3">
+        <label for="adresse" class="form-label">Adresse</label>
+        <input name="adresse" type="text" class="form-control" id="adresse" placeholder="Adresse" ngModel>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="mb-3">
+        <label for="email" class="form-label">Adresse email</label>
+        <input name="email" type="email" class="form-control" id="email" placeholder="name@example.com" ngModel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3">
+        <label for="mdp" class="form-label">Mot de passe</label>
+        <input name="mdp" type="password" class="form-control" id="mdp" placeholder="Mot de passe" ngModel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">S'inscrire</button>
+      </div>
+    </div>
+  </form>
+</div>

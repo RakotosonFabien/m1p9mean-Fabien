@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\bin",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\inscription",
+    "\\src\\app\\login",
+    "\\src\\app\\quote",
+    "\\src\\app\\services",
+    "\\src\\assets",
+    "\\src\\environments"
+  ],
+  "SelectedNode": "\\src\\app\\inscription\\inscription.component.ts",
+  "PreviewInSolutionExplorer": false
+}
