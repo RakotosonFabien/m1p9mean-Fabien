@@ -1,4 +1,4 @@
-const { Http2ServerResponse } = require('http2');
+var md5 = require('md5');
 const Constantes = require('./Constantes');
 let Utilisateur = class {
   constructor(_id, nom, adresse, supprime, id_type_u, email, mdp) {
@@ -14,10 +14,24 @@ let Utilisateur = class {
   testLogin(req, res, db) {
     authCollection = client.db.collection('auth_utilisateur');
     var utilisateur = autoCollection.find({
-      mdp: this.mdp,
+      mdp: this.cryptMdp(this.mdp),
       email : this.email
     })
     return utilisateur.token
+  }
+  saltedMdp(mdp) {
+    return "MyPassword" + mdp + Date.now()+"Russia"
+  }
+  cryptMdp(mdp) {
+    return md5(this.saltedMdp())
+  }
+
+  saltedToken() {
+    return "MyPasswordMyEmail" + this.email + this.mdp + Date.now() + "salted"
+  }
+  createToken() {
+    var defaultPassword = this.saltedToken()
+    return md5(defaultPassword)
   }
 
   //inserer
@@ -28,24 +42,28 @@ let Utilisateur = class {
       nom: this.nom,
       adresse: this.adresse,
       supprime: false,
-      id_type_u: Constantes.id_type_u
+      id_type_u: Constantes.typeClient()
     }
-    var authBody = {
-      mdp: this.mdp,
-      email : this.email
-    }
+    var token= this.createToken()
     userCollection.insertOne(userBody).then(result => {
-      console.log("User inserted");
-      res.json({
-        meta: {
-          msg: 'User created',
-          status : 200
-        }
-      });
+      this._id = result.insertedId
+      var authBody = {
+        mdp: this.cryptMdp(this.mdp),
+        email: this.email,
+        token: token,
+        date_token: Date.now(),
+        id_user: this._id.toString()
+      }
+      authCollection.insertOne(authBody).then(result => {
+        console.log("Auth inserted");
+      }).catch(error => console.error(error))
     }).catch(error => console.error(error))
-    authCollection.insertOne(authBody).then(result => {
-      console.log("Auth inserted");
-    }).catch(error => console.error(error))
+    res.json({
+      meta: {
+        msg: 'User created',
+        status: 200
+      }
+    });
   }
 
 }
