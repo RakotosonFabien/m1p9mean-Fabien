@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
   login(data : any) {
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
-        console.warn('Token ==> ' + response['data']['token'])
       } else {
         // status 400
         console.warn(response)
@@ -32,10 +31,11 @@ export class LoginComponent implements OnInit {
     }
     var input = {
       mdp: data.mdp,
-      email: data.email
+      email: data.email,
+      id_type_u : data.id_type_u
     }
     const options = this.toolsService.formOption();
-    var observable = this.http.post(ws_url + 'clients', input, options);
+    var observable = this.http.post(this.loginPostUrl, input, options);
     observable.subscribe(onSuccess, onError);
   }
   loadUtilisateur() {

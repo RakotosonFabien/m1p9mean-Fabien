@@ -107,7 +107,6 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
     utilisateur.construct_data(req.body)
     var testLogin = utilisateur.testLogin(db)
     testLogin.then(function (auth) {
-      console.log('Putain de merde ==> ' + auth.auth_utilisateur[0].token)
       var wsRenderer
       if (auth != null) {
         wsRenderer = new WsRenderer("Login success", 200, {
