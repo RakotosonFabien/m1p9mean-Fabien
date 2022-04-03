@@ -179,6 +179,32 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
     utilisateur.construct_data(req.body)
     utilisateur.insertUser(req, res, db, "admin");
   })
+  //categorie plat
+  app.get('/categorie_plat', (req, res) => {
+    db.collection('cat_plat').find().toArray()
+      .then(quotes => {
+        jsonReturn = new WsRenderer("Liste des categories de plats", 200, quotes)
+        res.json(jsonReturn.jsonReturn())
+      })
+      .catch(error => {
+        jsonReturn = new WsRenderer(error.message, 400)
+        res.json(jsonReturn.jsonReturn())
+      })
+  })
+  app.post('/categorie_plat', (req, res) => {
+    var cat_plat = db.collection('cat_plat')
+    cat_plat.insertOne(req.body)
+      .then(result => {
+        res.redirect('/')
+      })
+      .catch(error => console.error(error))
+  })
+  //plats
+  app.get('/plats/:idResto', (req, res) => {
+    var idResto = req.params.idResto
+    var jsonReturn = new WsRenderer("Erreur requete liste des plats ekaly", 200)
+    res.json(jsonReturn.jsonReturn())
+  })
 //ending routes
 })
 
