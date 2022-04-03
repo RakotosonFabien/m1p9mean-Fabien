@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AjoutRestoComponent } from './ajout-resto/ajout-resto.component';
 import { IndexClientComponent } from './index-client/index-client.component';
 import { IndexEkalyComponent } from './index-ekaly/index-ekaly.component';
 import { IndexLivreurComponent } from './index-livreur/index-livreur.component';
@@ -36,6 +37,9 @@ const routes: Routes = [
   },
   {
     path: 'liste-resto', component: ListeRestoComponent
+  },
+  {
+    path: 'nouveau-resto', component: AjoutRestoComponent
   }
 ];
 

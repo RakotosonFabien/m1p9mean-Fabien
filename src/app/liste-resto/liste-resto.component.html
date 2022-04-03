@@ -5,6 +5,8 @@
         <th scope="col">Nom</th>
         <th scope="col">Nom</th>
         <th scope="col">Adresse</th>
+        <th scope="col"><!--!Modifier--></th>
+        <th scope="col"><!--!Supprimer--></th>
       </tr>
     </thead>
     <tbody>
@@ -12,7 +14,14 @@
         <td>Number</td>
         <th scope="row">{{resto.nom}}</th>
         <td>{{resto.adresse}}</td>
+        <th scope="col"><button (click) ="modifierResto(resto.id)">Modifier</button></th>
+        <th scope="col"><button (click) ="supprimerResto(resto.id)">Supprimer</button></th>
       </tr>
     </tbody>
   </table>
+  <nav class="navbar navbar-light bg-light">
+    <form class="container-fluid justify-content-start">
+      <button (click)="nouveauResto()" class="btn btn-outline-success me-2">Ajouter un restaurant</button>
+    </form>
+  </nav>
 </div>

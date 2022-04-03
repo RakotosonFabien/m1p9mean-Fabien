@@ -39,6 +39,7 @@ export class UtilisateurService {
     var observable = this.http.post(ws_url + 'clients', input, options);
     observable.subscribe(onSuccess, onError);
   }
+
   insertResto(data: any) {
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {

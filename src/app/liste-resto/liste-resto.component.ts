@@ -28,8 +28,13 @@ export class ListeRestoComponent implements OnInit {
     }
     this.utilisateurService.findAll("restos").subscribe(onSuccess, onError)
   }
-  insert(data: any) {
-    this.utilisateurService.insertResto(data)
+  modifierResto(id: string) {
     this.refreshRestoList()
+  }
+  supprimerResto(id: string) {
+    this.refreshRestoList()
+  }
+  nouveauResto() {
+    this.router.navigate(['/nouveau-resto'])
   }
 }
