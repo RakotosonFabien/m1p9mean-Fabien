@@ -15,6 +15,6 @@ export class AjoutRestoComponent implements OnInit {
   }
   ajoutResto(data: any) {
     this.utilisateurService.insertResto(data)
-    this.router.navigate(['liste-resto'])
+    this.router.navigate(['/liste-resto'])
   }
 }

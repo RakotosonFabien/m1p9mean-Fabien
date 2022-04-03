@@ -13,7 +13,7 @@ db.utilisateurs.aggregate([{
   ]);
 
 
-//view
+////////////////////////////////view
 db.createView(
   'user_complet',
   'utilisateurs',
@@ -25,6 +25,21 @@ db.createView(
       foreignField : 'id_user',
       as : 'auth_utilisateur'
     }
+  }
+  ]
+)
+//plat_complet
+db.createView(
+  'plat_complet',
+  'plats',
+  [
+  {
+    $lookup : [{
+      from : 'cat_plat',
+      localField : '_id',
+      foreignField : 'id_user',
+      as : 'auth_utilisateur'
+    }]
   }
   ]
 )

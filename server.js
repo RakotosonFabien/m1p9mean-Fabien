@@ -13,6 +13,7 @@ require('./dotenv')
 //myClasses
 const Utilisateur = require('./classes/Utilisateur')
 const WsRenderer = require('./classes/WsRenderer')
+const Plat = require('./classes/Plat')
 // Replace process.env.DB_URL with your actual connection string
 const connectionString = process.env.DB_URL;
 MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client => {
@@ -200,10 +201,18 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
       .catch(error => console.error(error))
   })
   //plats
-  app.get('/plats/:idResto', (req, res) => {
+  app.get('/plat-resto/:idResto', (req, res) => {
     var idResto = req.params.idResto
+    var plat = new Plat()
+    plat.construct_data(req.body)
     var jsonReturn = new WsRenderer("Erreur requete liste des plats ekaly", 200)
     res.json(jsonReturn.jsonReturn())
+  })
+  app.post('/plats', (req, res) => {
+    var plat = new Plat()
+    plat.construct_data(req.body)
+    console.log('BICTH AVAO')
+    plat.insertPlat(req, res, db)
   })
 //ending routes
 })

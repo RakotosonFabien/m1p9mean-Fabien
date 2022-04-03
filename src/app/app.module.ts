@@ -15,6 +15,7 @@ import { IndexEkalyComponent } from './index-ekaly/index-ekaly.component';
 import { IndexLivreurComponent } from './index-livreur/index-livreur.component';
 import { ListeRestoComponent } from './liste-resto/liste-resto.component';
 import { AjoutRestoComponent } from './ajout-resto/ajout-resto.component';
+import { ListePlatComponent } from './liste-plat/liste-plat.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AjoutRestoComponent } from './ajout-resto/ajout-resto.component';
     IndexEkalyComponent,
     IndexLivreurComponent,
     ListeRestoComponent,
-    AjoutRestoComponent
+    AjoutRestoComponent,
+    ListePlatComponent
   ],
   imports: [
     BrowserModule,
