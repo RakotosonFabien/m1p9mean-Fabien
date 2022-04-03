@@ -128,8 +128,13 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
     var utilisateur = new Utilisateur()
     utilisateur.construct_data(req.body, "client")
     resultat = utilisateur.findUser(db, req.body).then(function (users) {
-      res.json(users)
+      var jsonReturn = new WsRenderer("Liste des clients ekaly", 200, users)
+      res.json(jsonReturn.jsonReturn())
     })
+      .catch(function (error) {
+        var jsonReturn = new WsRenderer("Erreur requete liste des clients ekaly", 500)
+        res.json(jsonReturn.jsonReturn())
+      })
   })
   app.post('/clients', (req, res) => {
     var utilisateur = new Utilisateur()
@@ -141,7 +146,12 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
     var utilisateur = new Utilisateur()
     utilisateur.construct_data(req.body, "livreur")
     resultat = utilisateur.findUser(db, req.body).then(function (users) {
-      res.json(users)
+      var jsonReturn = new WsRenderer("Liste des livreurs ekaly", 200, users)
+      res.json(jsonReturn.jsonReturn())
+    })
+    .catch(function (error) {
+      var jsonReturn = new WsRenderer("Erreur requete liste des livreurs ekaly", 500)
+      res.json(jsonReturn.jsonReturn())
     })
   })
   app.post('/livreurs', (req, res) => {
@@ -154,10 +164,15 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
     var utilisateur = new Utilisateur()
     utilisateur.construct_data(req.body, "resto")
     resultat = utilisateur.findUser(db, req.body).then(function (users) {
-      res.json(users)
+      var jsonReturn = new WsRenderer("Liste des livreurs ekaly", 200, users)
+      res.json(jsonReturn.jsonReturn())
     })
+      .catch(function (error) {
+        var jsonReturn = new WsRenderer("Erreur requete liste des restaurants ekaly", 500)
+        res.json(jsonReturn.jsonReturn())
+      })
   })
-  app.post('/clients', (req, res) => {
+  app.post('/restos', (req, res) => {
     var utilisateur = new Utilisateur()
     utilisateur.construct_data(req.body)
     utilisateur.insertUser(req, res, db, "resto");
