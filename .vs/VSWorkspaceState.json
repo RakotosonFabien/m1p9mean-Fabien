@@ -1,9 +1,12 @@
 {
   "ExpandedNodes": [
     "",
+    "\\bdd",
     "\\bin",
-    "\\classes"
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\index-ekaly"
   ],
-  "SelectedNode": "\\classes\\WsRenderer.js",
+  "SelectedNode": "\\src\\app\\index-ekaly\\index-ekaly.component.html",
   "PreviewInSolutionExplorer": false
 }

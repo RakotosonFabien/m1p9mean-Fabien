@@ -16,7 +16,6 @@ let Utilisateur = class {
   //login test
   testLogin(db) {
     var authCollection = db.collection('user_complet')
-    console.log(this.id_type_u)
     const auth = authCollection.findOne({
       id_type_u: ObjectId(this.id_type_u),
       "auth_utilisateur.email": this.email,
@@ -45,71 +44,66 @@ let Utilisateur = class {
     var defaultPassword = this.saltedToken()
     return md5(defaultPassword)
   }
-
-  //inserer
-  insertClient(req, res, db) {
-    var userCollection = db.collection('utilisateurs');
-    var authCollection = db.collection('auth_utilisateur');
-    var userBody = {
-      nom: this.nom,
-      adresse: this.adresse,
-      supprime: false,
-      id_type_u: ObjectId(Constantes.typeClient())
+  typeUser(type_user) {
+    switch (type_user) {
+      case "ekaly":
+        return Constantes.typeEkaly()
+        break
+      case "resto":
+        return Constantes.typeResto()
+        break
+      case "client":
+        return Constantes.typeClient()
+        break
+      case "livreur":
+        return Constantes.typeLivreur()
+        break
+      default:
+        return Constantes.typeClient()
+        break
     }
-    var token= this.createToken()
-    userCollection.insertOne(userBody).then(result => {
-      this._id = result.insertedId
-      var cryptedMdp = this.cryptMdp(this.mdp)
-      var authBody = {
-        mdp: cryptedMdp,
-        email: this.email,
-        token: token,
-        date_token: Date.now(),
-        id_user: ObjectId(this._id)
-      }
-      authCollection.insertOne(authBody).then(result => {
-        console.log("Auth inserted");
-      }).catch(error => console.error(error))
-    }).catch(error => console.error(error))
-    res.json({
-      meta: {
-        msg: 'User created',
-        status: 200
-      }
-    });
   }
-
-  //inserer
-  insertAdmin(req, res, db) {
-    var userCollection = db.collection('utilisateurs');
-    var authCollection = db.collection('auth_utilisateur');
-    var userBody = {
-      nom: this.nom,
-      adresse: this.adresse,
-      supprime: false,
-      id_type_u: ObjectId(Constantes.typeAdmin())
-    }
-    var token = this.createToken()
-    userCollection.insertOne(userBody).then(result => {
-      this._id = result.insertedId
-      var cryptedMdp = this.cryptMdp(this.mdp)
-      var authBody = {
-        mdp: cryptedMdp,
-        email: this.email,
-        token: token,
-        date_token: new Date(),
-        id_user: ObjectId(this._id)
+  findUser(db, data,typeUser) {
+    var typeUser = 'CACA'
+    typeUser = this.typeUser(typeUser)
+    console.log("VAO ==> " + typeUser)
+    data.id_type_u = ObjectId(typeUser)
+    console.log(data)
+    var resultats = db.collection('utilisateurs').find(data).toArray()
+    return resultats
+  }
+  //inserer user
+  insertUser(req, res, db, type_user) {
+      var typeUser = this.typeUser(type_user)
+      var userCollection = db.collection('utilisateurs');
+      var authCollection = db.collection('auth_utilisateur');
+      var userBody = {
+        nom: this.nom,
+        adresse: this.adresse,
+        supprime: false,
+        id_type_u: ObjectId(typeUser)
       }
-      authCollection.insertOne(authBody).then(result => {
-        console.log("Auth inserted");
+      var token = this.createToken()
+      userCollection.insertOne(userBody).then(result => {
+        this._id = result.insertedId
+        var cryptedMdp = this.cryptMdp(this.mdp)
+        var authBody = {
+          mdp: cryptedMdp,
+          email: this.email,
+          token: token,
+          date_token: Date.now(),
+          id_user: ObjectId(this._id)
+        }
+        authCollection.insertOne(authBody).then(result => {
+          console.log("Auth inserted");
+        }).catch(error => console.error(error))
       }).catch(error => console.error(error))
-    }).catch(error => console.error(error))
-    res.json({
-      meta: {
-        msg: 'User created',
-        status: 200
-      }
-    });
+      res.json({
+        meta: {
+          msg: 'User created',
+          status: 200
+        }
+      });
   }
 }
 module.exports = Utilisateur;
