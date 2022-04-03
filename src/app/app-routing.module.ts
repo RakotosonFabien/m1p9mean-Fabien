@@ -5,6 +5,7 @@ import { IndexEkalyComponent } from './index-ekaly/index-ekaly.component';
 import { IndexLivreurComponent } from './index-livreur/index-livreur.component';
 import { IndexRestoComponent } from './index-resto/index-resto.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { ListeRestoComponent } from './liste-resto/liste-resto.component';
 import { LoginComponent } from './login/login.component';
 import { QuoteComponent } from './quote/quote.component';
 
@@ -32,6 +33,9 @@ const routes: Routes = [
   },
   {
     path: 'index-livreur', component: IndexLivreurComponent
+  },
+  {
+    path: 'liste-resto', component: ListeRestoComponent
   }
 ];
 

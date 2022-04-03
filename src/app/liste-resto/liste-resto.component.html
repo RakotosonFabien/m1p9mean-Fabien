@@ -1,0 +1,18 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Adresse</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let resto of restos">
+        <td>Number</td>
+        <th scope="row">{{resto.nom}}</th>
+        <td>{{resto.adresse}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

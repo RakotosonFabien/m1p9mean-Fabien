@@ -6,13 +6,16 @@ import { ToolsService } from './tools.service';
 @Injectable({
   providedIn: 'root'
 })
-export class InscriptionService {
+export class RestoService {
 
   constructor(private http: HttpClient, private toolsServ: ToolsService) {
-  }
 
-  inscription(input : any) {
-  const options = this.toolsServ.formOption();
-  return this.http.post(ws_url + 'clients', input, options);
-}
+  }
+  findAll() {
+    var users: any = this.http.get(ws_url + "");
+    return users;
+  }
+  insertResto(input:any) {
+    
+  }
 }

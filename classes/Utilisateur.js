@@ -64,7 +64,6 @@ let Utilisateur = class {
     }
   }
   findUser(db, data,typeUser) {
-    var typeUser = 'CACA'
     typeUser = this.typeUser(typeUser)
     console.log("VAO ==> " + typeUser)
     data.id_type_u = ObjectId(typeUser)

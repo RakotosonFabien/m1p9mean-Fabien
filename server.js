@@ -4,10 +4,6 @@ const MongoClient = require('mongodb').MongoClient
 const cors = require('cors')
 const path = require('path')
 const app = express()
-const _id_client = "624605e5302389a762d5fcff";
-const _id_resto = "624605bd302389a762d5fcfd";
-const _id_ekaly = "624605bd302389a762d5fcfd";
-const _id_livreur = "624605d4302389a762d5fcfe";
 var corsOptions = {
   origin : "http://localhost:4200"
 }
@@ -126,8 +122,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   //clients
   app.get('/clients', (req, res) => {
     var utilisateur = new Utilisateur()
-    utilisateur.construct_data(req.body, "client")
-    resultat = utilisateur.findUser(db, req.body).then(function (users) {
+    utilisateur.construct_data(req.body)
+    resultat = utilisateur.findUser(db, req.body, "client").then(function (users) {
       var jsonReturn = new WsRenderer("Liste des clients ekaly", 200, users)
       res.json(jsonReturn.jsonReturn())
     })
@@ -144,8 +140,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   //livreurs
   app.get('/livreurs', (req, res) => {
     var utilisateur = new Utilisateur()
-    utilisateur.construct_data(req.body, "livreur")
-    resultat = utilisateur.findUser(db, req.body).then(function (users) {
+    utilisateur.construct_data(req.body)
+    resultat = utilisateur.findUser(db, req.body, "livreur").then(function (users) {
       var jsonReturn = new WsRenderer("Liste des livreurs ekaly", 200, users)
       res.json(jsonReturn.jsonReturn())
     })
@@ -162,8 +158,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   //restos
   app.get('/restos', (req, res) => {
     var utilisateur = new Utilisateur()
-    utilisateur.construct_data(req.body, "resto")
-    resultat = utilisateur.findUser(db, req.body).then(function (users) {
+    utilisateur.construct_data(req.body)
+    resultat = utilisateur.findUser(db, req.body, "resto").then(function (users) {
       var jsonReturn = new WsRenderer("Liste des livreurs ekaly", 200, users)
       res.json(jsonReturn.jsonReturn())
     })
