@@ -10,7 +10,15 @@ import { ToolsService } from './tools.service';
 export class UtilisateurService {
 
   constructor(private http: HttpClient, private toolsService: ToolsService, private router: Router ) { }
-  findAll(urlDirection : string) {
+  getUserFromToken() {
+    var token = localStorage.getItem('token')
+    if (token == null) {
+      return null
+    }
+    return this.http.get(ws_url + 'utilisateur-complet?auth_utilisateur.token='+token);
+  }
+
+  findAll(urlDirection: string) {
     var users: any = this.http.get(ws_url + urlDirection);
     console.log('MERDE ' + users)
     return users;

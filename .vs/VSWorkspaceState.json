@@ -8,6 +8,6 @@
     "\\src\\app\\ajout-resto",
     "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\ajout-resto\\ajout-resto.component.ts",
+  "SelectedNode": "\\src\\app\\services\\utilisateur.service.ts",
   "PreviewInSolutionExplorer": false
 }

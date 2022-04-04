@@ -182,9 +182,33 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
     utilisateur.construct_data(req.body)
     utilisateur.insertUser(req, res, db, "admin");
   })
+  //utilisateurs
+  app.get('/utilisateurs-complet', (req, res) => {
+    db.collection('user_complet').find(req.query).toArray()
+      .then(quotes => {
+        jsonReturn = new WsRenderer("Liste des utilisateurs complets", 200, quotes)
+        res.json(jsonReturn.jsonReturn())
+      })
+      .catch(error => {
+        jsonReturn = new WsRenderer(error.message, 400)
+        res.json(jsonReturn.jsonReturn())
+      })
+  })
+
+  app.get('/utilisateurs', (req, res) => {
+    db.collection('utilisateurs').find(req.query).toArray()
+      .then(quotes => {
+        jsonReturn = new WsRenderer("Liste des categories de plats", 200, quotes)
+        res.json(jsonReturn.jsonReturn())
+      })
+      .catch(error => {
+        jsonReturn = new WsRenderer(error.message, 400)
+        res.json(jsonReturn.jsonReturn())
+      })
+  })
   //categorie plat
   app.get('/categorie_plat', (req, res) => {
-    db.collection('cat_plat').find().toArray()
+    db.collection('cat_plat').find(req.query).toArray()
       .then(quotes => {
         jsonReturn = new WsRenderer("Liste des categories de plats", 200, quotes)
         res.json(jsonReturn.jsonReturn())
@@ -221,7 +245,6 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   app.post('/plats', (req, res) => {
     var plat = new Plat()
     plat.construct_data(req.body)
-    console.log('BICTH AVAO')
     plat.insertPlat(req, res, db)
   })
 //ending routes

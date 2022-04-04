@@ -12,7 +12,11 @@ let Utilisateur = class {
     this.email = data.email;
     this.id_type_u = data.id_type_u
   }
-
+  //get token from requeest
+  static getToken(req) {
+    var token = 'token'
+    return token
+  }
   //login test
   testLogin(db) {
     var authCollection = db.collection('user_complet')
@@ -65,7 +69,6 @@ let Utilisateur = class {
   }
   findUser(db, data,typeUser) {
     typeUser = this.typeUser(typeUser)
-    console.log("VAO ==> " + typeUser)
     data.id_type_u = ObjectId(typeUser)
     console.log(data)
     var resultats = db.collection('utilisateurs').find(data).toArray()

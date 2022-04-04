@@ -34,8 +34,8 @@ export class PlatService {
   }
 
   findAllResto(idResto: any) {
-    var users: any = this.http.get(ws_url + 'plats/:' + idResto);
-    return users;
+    var plats: any = this.http.get(ws_url + 'plat-resto/:' + idResto);
+    return plats;
   }
 
 }
