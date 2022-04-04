@@ -12,14 +12,22 @@
       <tr *ngFor="let plat of plats">
         <th scope="row">{{plat.nom}}</th>
         <td>{{plat.adresse}}</td>
-        <th scope="col"><button (click)="modifierResto(resto.id)">Modifier</button></th>
-        <th scope="col"><button (click)="supprimerResto(resto.id)">Supprimer</button></th>
+        <th scope="col"><button (click)="modifierPlat(plat._id)">Modifier</button></th>
+        <th scope="col"><button (click)="supprimerPlat(plat._id)">Supprimer</button></th>
       </tr>
     </tbody>
   </table>
+  <div *ngRepeat="let plat in plats" class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{plat.nom}}</h5>
+      <p class="card-text"></p>
+      <a href="#" class="btn btn-primary">Ajouter</a>
+    </div>
+  </div>
   <nav class="navbar navbar-light bg-light">
     <form class="container-fluid justify-content-start">
-      <button (click)="nouveauResto()" class="btn btn-outline-success me-2">Ajouter un restaurant</button>
+      <button (click)="nouveauPlat()" class="btn btn-outline-success me-2">Ajouter un plat</button>
     </form>
   </nav>
 </div>

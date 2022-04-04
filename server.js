@@ -3,6 +3,8 @@ const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 const cors = require('cors')
 const path = require('path')
+const queryString = require('queryString')
+const url = require('url')
 const app = express()
 var corsOptions = {
   origin : "http://localhost:4200"
@@ -204,9 +206,17 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   app.get('/plat-resto/:idResto', (req, res) => {
     var idResto = req.params.idResto
     var plat = new Plat()
-    plat.construct_data(req.body)
-    var jsonReturn = new WsRenderer("Erreur requete liste des plats ekaly", 200)
-    res.json(jsonReturn.jsonReturn())
+    plat.getPlatResto(db, req.query, idResto).then(function (plats) {
+      if (plats != null) {
+        res.json(new WsRenderer("Requete liste des plats reussi", 200, plats).jsonReturn())
+      }
+      else {
+        res.json(new WsRenderer("Requete liste des plats echoue, plats null", 400).jsonReturn())
+      }
+    })
+      .catch(error => {
+        res.json(new WsRenderer(error.message, 400).jsonReturn())
+      })
   })
   app.post('/plats', (req, res) => {
     var plat = new Plat()

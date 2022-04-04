@@ -5,8 +5,9 @@
     "\\bin",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\index-ekaly"
+    "\\src\\app\\ajout-resto",
+    "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\index-ekaly\\index-ekaly.component.html",
+  "SelectedNode": "\\src\\app\\ajout-resto\\ajout-resto.component.ts",
   "PreviewInSolutionExplorer": false
 }

@@ -11,7 +11,12 @@ let Plat = class {
     this.id_cat_plat = data.id_cat_plat;
     this.montant = data.montant
   }
-
+  getPlatResto(db, data, idResto) {
+    var platCollection = db.collection('plat_complet')
+    data['plat_resto.id_resto'] = ObjectId(idResto)
+    console.log(data)
+    return platCollection.find(data).toArray()
+  }
   insertPlat(req, res, db) {
     var retour
     var platCollection = db.collection('plats')
@@ -24,7 +29,7 @@ let Plat = class {
       id_cat_plat : ObjectId(this.id_cat_plat)
     }
     platCollection.insertOne(platBody).then(result => {
-      this._id = result._id
+      this._id = result.insertedId
       var platRestoBody = {
         id_plat: ObjectId(this._id),
         id_resto : ObjectId(this.id_user)
