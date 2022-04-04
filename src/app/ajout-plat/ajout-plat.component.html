@@ -1,0 +1,24 @@
+<div class="container">
+  <hr>
+  <form #userPost="ngForm" (ngSubmit)="ajoutPlat(userPost.value)">
+    <div class="row">
+      <div class="mb-3">
+        <label for="nom" class="form-label">Nom</label>
+        <input name="nom" type="text" class="form-control" id="nom" placeholder="Nom" ngModel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3">
+        <label for="id_cat_plat" class="form-label">Categorie</label>
+        <select name="id_cat_plat" id="id_cat_plat" class="form-select form-control" aria-label="Default select example" ngModel>
+          <option *ngFor="let categorie of cat_plat" [value]="categorie._id">{{categorie.nom}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Ajouter nouveau plat</button>
+      </div>
+    </div>
+  </form>
+</div>

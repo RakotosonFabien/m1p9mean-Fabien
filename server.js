@@ -2,9 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 const cors = require('cors')
-const path = require('path')
-const queryString = require('queryString')
-const url = require('url')
 const app = express()
 var corsOptions = {
   origin : "http://localhost:4200"
@@ -183,8 +180,10 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
     utilisateur.insertUser(req, res, db, "admin");
   })
   //utilisateurs
+  
   app.get('/utilisateurs-complet', (req, res) => {
-    db.collection('user_complet').find(req.query).toArray()
+    var token = req.headers.authorization.split('Bearer ')[1]
+    db.collection('user_complet').find({ "auth_utilisateur.token": token }).project({ "auth_utilisateur.token": 0, "auth_utilisateur.mdp": 0}).toArray()
       .then(quotes => {
         jsonReturn = new WsRenderer("Liste des utilisateurs complets", 200, quotes)
         res.json(jsonReturn.jsonReturn())

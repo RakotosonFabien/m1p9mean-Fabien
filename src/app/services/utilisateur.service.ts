@@ -12,10 +12,13 @@ export class UtilisateurService {
   constructor(private http: HttpClient, private toolsService: ToolsService, private router: Router ) { }
   getUserFromToken() {
     var token = localStorage.getItem('token')
-    if (token == null) {
-      return null
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     }
-    return this.http.get(ws_url + 'utilisateur-complet?auth_utilisateur.token='+token);
+    var lien = ws_url + 'utilisateurs-complet'
+    console.log(lien)
+    return this.http.get(lien, { headers: headers });
   }
 
   findAll(urlDirection: string) {

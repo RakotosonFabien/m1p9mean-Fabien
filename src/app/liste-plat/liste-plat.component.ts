@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ErrorService } from '../services/error.service';
 import { PlatService } from '../services/plat.service';
 import { UtilisateurService } from '../services/utilisateur.service';
 
@@ -8,27 +10,47 @@ import { UtilisateurService } from '../services/utilisateur.service';
   styleUrls: ['./liste-plat.component.css']
 })
 export class ListePlatComponent implements OnInit {
-  plats: any
-  constructor(private platService: PlatService, private utilisateurService: UtilisateurService) { }
+  plats : any
+  user: any
+  constructor(private platService: PlatService, private utilisateurService: UtilisateurService, private errorService: ErrorService, private router : Router) { }
 
   ngOnInit(): void {
-    this.refreshPlatList()
+    this.setUser()
+  }
+  setUser() {
+    const onSuccess = (response: any) => {
+      if (response['meta']['status'] == 200) {
+        this.user = response['data'][0]
+        this.refreshPlatList()
+      }
+      else {
+        this.errorService.displayErrorData(response)
+      }
+    }
+    const onError = (response: any) => {
+      this.errorService.displayError(response)
+    }
+    this.utilisateurService.getUserFromToken().subscribe(onSuccess, onError)
   }
   refreshPlatList() {
+    console.log('NUMERO 2')
     const onSuccess = (response: any) => {
       console.log(response['meta']['status'])
       if (response['meta']['status'] == 200) {
-        console.log(response)
+        console.log('MES PLATS => ' + response['data'])
         this.plats = response['data'];
       } else {
       }
+      console.log(this.plats)
     }
-
     const onError = (response: any) => {
     }
-    this.platService.findAllResto(this.utilisateurService.getUserFromToken()._id).subscribe(onSuccess, onError)
+    console.log('NOUVEAU ' + this.user)
+    this.platService.findAllResto(this.user._id).subscribe(onSuccess, onError)
   }
   modifierPlat(idPlat: string) { }
   supprimerPlat(idPlat: string) { }
-  nouveauPlat() { }
+  nouveauPlat() {
+    this.router.navigateByUrl('ajout-plat')
+  }
 }

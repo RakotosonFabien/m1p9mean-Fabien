@@ -16,6 +16,8 @@ import { IndexLivreurComponent } from './index-livreur/index-livreur.component';
 import { ListeRestoComponent } from './liste-resto/liste-resto.component';
 import { AjoutRestoComponent } from './ajout-resto/ajout-resto.component';
 import { ListePlatComponent } from './liste-plat/liste-plat.component';
+import { IndexRoutingComponent } from './index-routing/index-routing.component';
+import { AjoutPlatComponent } from './ajout-plat/ajout-plat.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { ListePlatComponent } from './liste-plat/liste-plat.component';
     IndexLivreurComponent,
     ListeRestoComponent,
     AjoutRestoComponent,
-    ListePlatComponent
+    ListePlatComponent,
+    IndexRoutingComponent,
+    AjoutPlatComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,7 @@ export class PlatService {
   insertPlat(data: any) {
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
-        this.router.navigate(['/liste-plat']);
+        //this.router.navigate(['/liste-plat']);
       } else {
         // status 400
         console.warn(response)
@@ -21,21 +21,25 @@ export class PlatService {
     const onError = (response: any) => {
       console.log("err");
     }
-    var input = {
-      nom: data.nom,
-      adresse: data.adresse,
-      mdp: data.mdp,
-      email: data.email
-    }
-
+    //var input = {
+    //  nom: data.nom,
+    //  adresse: data.adresse,
+    //  mdp: data.mdp,
+    //  email: data.email,
+    //  id_user: data.id_user,
+    //  id_cat_plat : data.id_cat_plat
+    //}
     const options = this.toolsService.formOption();
-    var observable = this.http.post(ws_url + 'plats', input, options);
+    var observable = this.http.post(ws_url + 'plats', data, options);
     observable.subscribe(onSuccess, onError);
   }
 
   findAllResto(idResto: any) {
-    var plats: any = this.http.get(ws_url + 'plat-resto/:' + idResto);
+    var plats: any = this.http.get(ws_url + 'plat-resto/' + idResto);
     return plats;
   }
-
+  getCategoriesPlat() {
+    var plats: any = this.http.get(ws_url + 'categorie_plat');
+    return plats;
+  }
 }

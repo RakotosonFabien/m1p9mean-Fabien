@@ -28,6 +28,25 @@ db.createView(
   }
   ]
 )
+db.createView(
+  'user_complet_simple',
+  'utilisateurs',
+  [
+  {
+    $lookup : {
+      from : 'auth_utilisateur',
+      localField : '_id',
+      foreignField : 'id_user',
+	  pipeline : [
+		{
+		  $project : { email : 1}
+		}
+	  ],
+      as : 'auth_utilisateur'
+    }
+  }
+  ]
+)
 //plat_categorie
 db.createView(
   'plat_complet',
