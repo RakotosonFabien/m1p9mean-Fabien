@@ -90,7 +90,8 @@ export class UtilisateurService {
       nom: data.nom,
       adresse: data.adresse,
       mdp: data.mdp,
-      email: data.email
+      email: data.email,
+      image : data.image
     }
 
     const options = this.toolsService.formOption();

@@ -2,7 +2,7 @@ var md5 = require('md5');
 const Constantes = require('./Constantes');
 const {ObjectId} = require('mongodb');
 let Utilisateur = class {
-  constructor(_id, nom, adresse, supprime, id_type_u, email, mdp) {
+  constructor(_id, nom, adresse, supprime, id_type_u, email, mdp, image) {
   //constructor() {
   }
   construct_data(data) {
@@ -10,7 +10,8 @@ let Utilisateur = class {
     this.adresse = data.adresse;
     this.mdp = data.mdp;
     this.email = data.email;
-    this.id_type_u = data.id_type_u
+    this.id_type_u = data.id_type_u;
+    this.image = data.image
   }
   //get token from requeest
   static getToken(req) {
@@ -83,7 +84,8 @@ let Utilisateur = class {
         nom: this.nom,
         adresse: this.adresse,
         supprime: false,
-        id_type_u: ObjectId(typeUser)
+        id_type_u: ObjectId(typeUser),
+        image : this.image
       }
       var token = this.createToken()
       userCollection.insertOne(userBody).then(result => {

@@ -9,6 +9,16 @@
     </div>
     <div class="row">
       <div class="mb-3">
+        <label class="form-label" for="image">Image</label>
+        <input name="image" type="file" class="form-control" id="image" (change)="imageChanged($event)" ngModel />
+      </div>
+      <div *ngIf="myImage">
+        <img src="{{myImage}}" width="200" height="200" alt="" />
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="mb-3">
         <label for="adresse" class="form-label">Adresse</label>
         <input name="adresse" type="text" class="form-control" id="adresse" placeholder="Adresse" ngModel>
       </div>
