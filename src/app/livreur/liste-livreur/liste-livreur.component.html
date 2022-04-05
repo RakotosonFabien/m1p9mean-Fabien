@@ -1,0 +1,30 @@
+<div class="container">
+  <app-header></app-header>
+  <h1>Liste des livreurs</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Adresse</th>
+        <th scope="col"><!--!Modifier--></th>
+        <th scope="col"><!--!Supprimer--></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let livreur of livreurs">
+        <td>Number</td>
+        <th scope="row">{{livreur.nom}}</th>
+        <td>{{livreur.adresse}}</td>
+        <th scope="col"><button (click)="modifierLivreur(livreur.id)">Modifier</button></th>
+        <th scope="col"><button (click)="supprimerLivreur(livreur.id)">Supprimer</button></th>
+      </tr>
+    </tbody>
+  </table>
+  <nav class="navbar navbar-light bg-light">
+    <form class="container-fluid justify-content-start">
+      <button (click)="nouveauLivreur()" class="btn btn-outline-success me-2">Nouveau livreur</button>
+    </form>
+  </nav>
+  <app-footer></app-footer>
+</div>

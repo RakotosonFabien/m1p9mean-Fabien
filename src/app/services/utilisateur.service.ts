@@ -23,7 +23,6 @@ export class UtilisateurService {
 
   findAll(urlDirection: string) {
     var users: any = this.http.get(ws_url + urlDirection);
-    console.log('MERDE ' + users)
     return users;
   }
 
@@ -51,10 +50,34 @@ export class UtilisateurService {
     observable.subscribe(onSuccess, onError);
   }
 
+  insertLivreur(data: any) {
+    const onSuccess = (response: any) => {
+      if (response['meta']['status'] == 200) {
+        this.router.navigateByUrl('liste-livreur');
+      } else {
+        // status 400
+        console.warn(response)
+      }
+    }
+    const onError = (response: any) => {
+      console.log("err");
+    }
+    var input = {
+      nom: data.nom,
+      adresse: data.adresse,
+      mdp: data.mdp,
+      email: data.email
+    }
+
+    const options = this.toolsService.formOption();
+    var observable = this.http.post(ws_url + 'livreurs', input, options);
+    observable.subscribe(onSuccess, onError);
+  }
+
   insertResto(data: any) {
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
-        this.router.navigateByUrl('login');
+        this.router.navigateByUrl('liste-resto');
       } else {
         // status 400
         console.warn(response)

@@ -10,6 +10,8 @@ import { IndexRoutingComponent } from './index-routing/index-routing.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { ListePlatComponent } from './liste-plat/liste-plat.component';
 import { ListeRestoComponent } from './liste-resto/liste-resto.component';
+import { AjoutLivreurComponent } from './livreur/ajout-livreur/ajout-livreur.component';
+import { ListeLivreurComponent } from './livreur/liste-livreur/liste-livreur.component';
 import { LoginComponent } from './login/login.component';
 import { QuoteComponent } from './quote/quote.component';
 
@@ -49,6 +51,12 @@ const routes: Routes = [
   },
   {
     path: 'ajout-plat', component: AjoutPlatComponent
+  },
+  {
+    path: 'ajout-livreur', component: AjoutLivreurComponent
+  },
+  {
+    path: 'liste-livreur', component: ListeLivreurComponent
   }
 ];
 

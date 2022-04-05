@@ -20,6 +20,8 @@ import { IndexRoutingComponent } from './index-routing/index-routing.component';
 import { AjoutPlatComponent } from './ajout-plat/ajout-plat.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { AjoutLivreurComponent } from './livreur/ajout-livreur/ajout-livreur.component';
+import { ListeLivreurComponent } from './livreur/liste-livreur/liste-livreur.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { HeaderComponent } from './header/header.component';
     IndexRoutingComponent,
     AjoutPlatComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    AjoutLivreurComponent,
+    ListeLivreurComponent
   ],
   imports: [
     BrowserModule,

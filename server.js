@@ -154,7 +154,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   app.post('/livreurs', (req, res) => {
     var utilisateur = new Utilisateur()
     utilisateur.construct_data(req.body)
-    utilisateur.insertUser(req, res, db, "livreur");
+    utilisateur.insertUser(req, res, db, "livreur")
   })
   //restos
   app.get('/restos', (req, res) => {
