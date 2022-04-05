@@ -7,7 +7,7 @@ var corsOptions = {
   origin : "http://localhost:4200"
 }
 app.use(cors(corsOptions))
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true, limit : '50mb' }));
 require('./dotenv')
 //myClasses
 const Utilisateur = require('./classes/Utilisateur')
@@ -24,8 +24,9 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   // Middlewares
   // ========================
   app.set('view engine', 'ejs')
-  app.use(bodyParser.urlencoded({ extended: true }))
-  app.use(bodyParser.json())
+  app.use(bodyParser.json({
+    limit: '50mb'
+  }))
   app.use(express.static('public'))
 
   // ========================

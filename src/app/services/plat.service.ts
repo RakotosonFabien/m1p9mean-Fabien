@@ -12,6 +12,7 @@ export class PlatService {
   insertPlat(data: any) {
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
+        console.log('FIN ===> ' + JSON.stringify(data))
         //this.router.navigate(['/liste-plat']);
       } else {
         // status 400
@@ -21,14 +22,6 @@ export class PlatService {
     const onError = (response: any) => {
       console.log("err");
     }
-    //var input = {
-    //  nom: data.nom,
-    //  adresse: data.adresse,
-    //  mdp: data.mdp,
-    //  email: data.email,
-    //  id_user: data.id_user,
-    //  id_cat_plat : data.id_cat_plat
-    //}
     const options = this.toolsService.formOption();
     var observable = this.http.post(ws_url + 'plats', data, options);
     observable.subscribe(onSuccess, onError);

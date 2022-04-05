@@ -18,6 +18,8 @@ import { AjoutRestoComponent } from './ajout-resto/ajout-resto.component';
 import { ListePlatComponent } from './liste-plat/liste-plat.component';
 import { IndexRoutingComponent } from './index-routing/index-routing.component';
 import { AjoutPlatComponent } from './ajout-plat/ajout-plat.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { AjoutPlatComponent } from './ajout-plat/ajout-plat.component';
     AjoutRestoComponent,
     ListePlatComponent,
     IndexRoutingComponent,
-    AjoutPlatComponent
+    AjoutPlatComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

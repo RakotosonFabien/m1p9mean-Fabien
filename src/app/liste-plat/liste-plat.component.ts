@@ -33,11 +33,9 @@ export class ListePlatComponent implements OnInit {
     this.utilisateurService.getUserFromToken().subscribe(onSuccess, onError)
   }
   refreshPlatList() {
-    console.log('NUMERO 2')
     const onSuccess = (response: any) => {
       console.log(response['meta']['status'])
       if (response['meta']['status'] == 200) {
-        console.log('MES PLATS => ' + response['data'])
         this.plats = response['data'];
       } else {
       }

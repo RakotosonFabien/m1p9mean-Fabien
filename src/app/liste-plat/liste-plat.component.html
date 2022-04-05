@@ -1,17 +1,23 @@
+<app-header></app-header>
 <div class="container">
   <h1>Liste des plats</h1>
-  <div class="card" style="width: 18rem;" *ngFor="let plat of plats">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{plat.nom}}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Ici le panier</a>
+  
+  <div class="row">
+    <div class="col-sm-6" *ngFor="let plat of plats">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{plat.nom}}</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
     </div>
   </div>
-  <!--nouveau plat-->
-  <nav class="navbar navbar-light bg-light">
-    <form class="container-fluid justify-content-start">
-      <button (click)="nouveauPlat()" class="btn btn-outline-success me-2">Ajouter un plat</button>
-    </form>
-  </nav>
-</div>
+    <!--nouveau plat-->
+    <nav class="navbar navbar-light bg-light">
+      <form class="container-fluid justify-content-start">
+        <button (click)="nouveauPlat()" class="btn btn-outline-success me-2">Ajouter un plat</button>
+      </form>
+    </nav>
+  </div>
+<app-footer></app-footer>

@@ -3,11 +3,14 @@
     "",
     "\\bdd",
     "\\bin",
+    "\\classes",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\ajout-resto",
-    "\\src\\app\\services"
+    "\\src\\app\\ajout-plat",
+    "\\src\\app\\header",
+    "\\src\\app\\liste-plat",
+    "\\src\\assets"
   ],
-  "SelectedNode": "\\src\\app\\services\\utilisateur.service.ts",
+  "SelectedNode": "\\src\\app\\ajout-plat\\ajout-plat.component.html",
   "PreviewInSolutionExplorer": false
 }

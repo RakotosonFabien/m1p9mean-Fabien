@@ -37,6 +37,7 @@ export class IndexRoutingComponent implements OnInit {
               this.router.navigateByUrl('index-resto')
               break
             default:
+              this.router.navigateByUrl('login')
               break
           }
         }
