@@ -1,24 +1,18 @@
 <div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Nom</th>
-        <th scope="col">Nom</th>
-        <th scope="col">Adresse</th>
-        <th scope="col"><!--!Modifier--></th>
-        <th scope="col"><!--!Supprimer--></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let resto of restos">
-        <td>Number</td>
-        <th scope="row">{{resto.nom}}</th>
-        <td>{{resto.adresse}}</td>
-        <th scope="col"><button (click) ="modifierResto(resto.id)">Modifier</button></th>
-        <th scope="col"><button (click) ="supprimerResto(resto.id)">Supprimer</button></th>
-      </tr>
-    </tbody>
-  </table>
+  <h1>Liste des restaurants</h1>
+  <!--LIste restos vaovao-->
+  <div class="row">
+    <div class="col-sm-6" *ngFor="let resto of restos">
+      <div class="card">
+        <img src="{{resto.image || 'assets/images/restaurant.png'}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{resto.nom}}</h5>
+          <p class="card-text">Adresse : {{resto.adresse}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Fin liste restos vaovao-->
   <nav class="navbar navbar-light bg-light">
     <form class="container-fluid justify-content-start">
       <button (click)="nouveauResto()" class="btn btn-outline-success me-2">Ajouter un restaurant</button>
