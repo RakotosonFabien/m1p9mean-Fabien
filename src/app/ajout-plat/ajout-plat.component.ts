@@ -37,7 +37,7 @@ export class AjoutPlatComponent implements OnInit {
         data['id_user'] = response['data'][0]['_id']
         data['image'] = this.myImage
         this.platService.insertPlat(data)
-        //this.router.navigateByUrl('liste-plat')
+        this.router.navigateByUrl('liste-plat')
       } else {
         // status 400
         console.warn(response)
