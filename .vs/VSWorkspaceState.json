@@ -6,11 +6,10 @@
     "\\classes",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\ajout-plat",
-    "\\src\\app\\header",
-    "\\src\\app\\liste-plat",
+    "\\src\\app\\livreur",
+    "\\src\\app\\livreur\\ajout-livreur",
     "\\src\\assets"
   ],
-  "SelectedNode": "\\src\\app\\ajout-plat\\ajout-plat.component.html",
+  "SelectedNode": "\\src\\app\\livreur\\ajout-livreur\\ajout-livreur.component.html",
   "PreviewInSolutionExplorer": false
 }
