@@ -5,8 +5,8 @@ const path = require('path')
 const cors = require('cors')
 const app = express()
 var corsOptions = {
-  origin : "http://localhost:4200"
-  //origin : "https://m1p9mean-fabien.herokuapp.com:4200"
+  //origin : "http://localhost:4200"
+  origin : "https://m1p9mean-fabien.herokuapp.com:4200"
 }
 app.use(cors(corsOptions))
 app.use(bodyParser.urlencoded({ extended: true, limit : '50mb' }));
@@ -255,7 +255,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
 
 //Listen
 const isProduction = process.env.NODE_ENV === 'production'
-const port = isProduction ? 7500 : 3000
+const port = isProduction ? process.env.PORT : 3000
 app.listen(port, (req, res) => {
   console.log('RUNNING');
 })

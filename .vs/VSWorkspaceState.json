@@ -3,14 +3,12 @@
     "",
     "\\bdd",
     "\\bin",
-    "\\classes",
     "\\src",
-    "\\src\\app",
-    "\\src\\app\\ajout-plat",
-    "\\src\\app\\header",
-    "\\src\\app\\liste-plat",
-    "\\src\\assets"
+    "\\src\\app\\livreur",
+    "\\src\\app\\livreur\\ajout-livreur",
+    "\\src\\assets",
+    "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\ajout-plat\\ajout-plat.component.html",
+  "SelectedNode": "\\src\\environments\\environment.ts",
   "PreviewInSolutionExplorer": false
 }
