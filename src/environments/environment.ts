@@ -4,9 +4,8 @@
 export const environment = {
   production: false,
 };
-export const ws_url = '';
-//export const ws_url_offline = 'http://localhost:3000/'
-//export const ws_url_online = 'https://m1p9mean-fabien.herokuapp.com/'
+//export const ws_url = 'https://m1p9mean-fabien.herokuapp.com:3000/';
+export const ws_url = 'http://localhost:3000/'
 export const type_user =
 {
   user_client: '624605e5302389a762d5fcff',

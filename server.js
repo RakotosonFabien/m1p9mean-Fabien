@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
+const path = require('path')
 const cors = require('cors')
 const app = express()
 var corsOptions = {
   origin : "http://localhost:4200"
+  //origin : "https://m1p9mean-fabien.herokuapp.com:4200"
 }
 app.use(cors(corsOptions))
 app.use(bodyParser.urlencoded({ extended: true, limit : '50mb' }));
@@ -33,11 +35,12 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   // Routes
   // ========================
   app.get('/', (req, res) => {
-    db.collection('quotes').find().toArray()
-      .then(quotes => {
-        res.render('index.ejs', { quotes: quotes })
-      })
-      .catch(/* ... */)
+    res.json({sadsad :"asdasdsad"})
+    //db.collection('quotes').find().toArray()
+    //  .then(quotes => {
+    //    res.render('index.ejs', { quotes: quotes })
+    //  })
+    //  .catch(/* ... */)
   })
   //quotes
   app.get('/quotes', (req, res) => {

@@ -2,13 +2,11 @@
   <h1>Liste des restaurants</h1>
   <!--LIste restos vaovao-->
   <div class="row">
-    <div class="col-sm-6" *ngFor="let resto of restos">
-      <div class="card">
-        <img src="{{resto.image || 'assets/images/restaurant.png'}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{resto.nom}}</h5>
-          <p class="card-text">Adresse : {{resto.adresse}}</p>
-        </div>
+    <div class="card" style="width: 18rem;" *ngFor="let resto of restos">
+      <img class="card-img-top" src="{{resto.image || 'assets/images/restaurant.png'}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{resto.nom}}</h5>
+        <a href="#" class="btn btn-primary">Ajout plat ici</a>
       </div>
     </div>
   </div>

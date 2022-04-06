@@ -14,14 +14,13 @@ export class AjoutRestoComponent implements OnInit {
   ngOnInit(): void {
   }
   ajoutResto(data: any) {
-    this.utilisateurService.insertResto(data)
-    this.router.navigate(['/liste-resto'])
+    data['image'] = this.myImage
+    this.utilisateurService.insertResto(data, true)
   }
   imageChanged($event: Event) {
     var target = $event.target as HTMLInputElement
     const file = target.files![0]
     const onSuccess = (response: any) => {
-      console.log('RESPONSE ==> ' + response)
       this.myImage = response
     }
     const onError = (response: any) => {

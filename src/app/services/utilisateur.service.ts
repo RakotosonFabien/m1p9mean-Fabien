@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ws_url } from '../../environments/environment';
+import { ErrorService } from './error.service';
 import { ToolsService } from './tools.service';
 
 @Injectable({
@@ -74,17 +75,18 @@ export class UtilisateurService {
     observable.subscribe(onSuccess, onError);
   }
 
-  insertResto(data: any) {
+  insertResto(data: any, redirect: boolean) {
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
-        this.router.navigateByUrl('liste-resto');
+        if (redirect) {
+          this.router.navigateByUrl('liste-resto');
+        }
       } else {
         // status 400
-        console.warn(response)
       }
     }
     const onError = (response: any) => {
-      console.log("err");
+      
     }
     var input = {
       nom: data.nom,
