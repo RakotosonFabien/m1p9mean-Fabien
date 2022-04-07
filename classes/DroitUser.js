@@ -9,19 +9,15 @@ let DroitUser = class {
     console.log(user.id_type_u.toString())
     switch (user.id_type_u.toString()) {
       case Constantes.typeAdmin():
-        console.log('ADMIN')
         return new DroitUser(false)
         break
       case Constantes.typeResto():
-        console.log('RESTO')
         return new DroitUser(false)
         break
       case Constantes.typeClient():
-        console.log('CLIENT')
         return new DroitUser(true)
         break
       case Constantes.typeLivreur():
-        console.log('LIVREUR')
         return new DroitUser(false)
         break
       

@@ -20,28 +20,11 @@ export class ListePlatComponent implements OnInit {
     this.setRenderConditions()
     this.refreshPlatList()
   }
-  /*setUser() {
-    const onSuccess = (response: any) => {
-      if (response['meta']['status'] == 200) {
-        this.user = response['data'][0]
-        this.refreshPlatList()
-      }
-      else {
-        this.errorService.displayErrorData(response)
-      }
-    }
-    const onError = (response: any) => {
-      this.errorService.displayError(response)
-    }
-    this.utilisateurService.getUserFromToken().subscribe(onSuccess, onError)
-  }
-  */
+  
   setRenderConditions() {
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
-        if (response['data'].length > 0) {
-          var user = response['data'][0]
-        }
+        this.commandePlat = response['data']['commandePlat']
       }
       else {
         this.errorService.displayErrorData(response)
@@ -50,7 +33,7 @@ export class ListePlatComponent implements OnInit {
     const onError = (response: any) => {
       this.errorService.displayError(response)
     }
-    this.utilisateurService.getUserFromToken().subscribe(onSuccess, onError)
+    this.utilisateurService.getTokenUserAllowing().subscribe(onSuccess, onError)
   }
   refreshPlatList() {
     const onSuccess = (response: any) => {
