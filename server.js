@@ -184,7 +184,20 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
     utilisateur.insertUser(req, res, db, "admin");
   })
   //utilisateurs
-  
+  app.get('/droit-utilisateur', (req, res) => {
+    var token = Utilisateur.getRequestToken(req)
+    db.collection('user_complet').find({ "auth_utilisateur.token": token }).project({ "auth_utilisateur.token": 0, "auth_utilisateur.mdp": 0 }).toArray()
+      .then(users => {
+        console
+        var droits = Utilisateur.droitUser(users[0])
+        jsonReturn = new WsRenderer("droits utilisateurs", 200, droits)
+        res.json(jsonReturn.jsonReturn())
+      })
+      .catch(error => {
+        jsonReturn = new WsRenderer(error.message, 400)
+        res.json(jsonReturn.jsonReturn())
+      })
+  })
   app.get('/utilisateurs-complet', (req, res) => {
     var token = req.headers.authorization.split('Bearer ')[1]
     db.collection('user_complet').find({ "auth_utilisateur.token": token }).project({ "auth_utilisateur.token": 0, "auth_utilisateur.mdp": 0}).toArray()

@@ -12,18 +12,36 @@ import { UtilisateurService } from '../services/utilisateur.service';
 })
 export class ListePlatComponent implements OnInit {
   plats : any
-  user: any
+  commandePlat: boolean = false
   constructor(private platService: PlatService, private utilisateurService: UtilisateurService, private errorService: ErrorService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.setUser()
+    //this.setUser()
+    this.setRenderConditions()
+    this.refreshPlatList()
   }
-  setUser() {
+  /*setUser() {
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
         this.user = response['data'][0]
-        console.log('tay' + this.user._id)
         this.refreshPlatList()
+      }
+      else {
+        this.errorService.displayErrorData(response)
+      }
+    }
+    const onError = (response: any) => {
+      this.errorService.displayError(response)
+    }
+    this.utilisateurService.getUserFromToken().subscribe(onSuccess, onError)
+  }
+  */
+  setRenderConditions() {
+    const onSuccess = (response: any) => {
+      if (response['meta']['status'] == 200) {
+        if (response['data'].length > 0) {
+          var user = response['data'][0]
+        }
       }
       else {
         this.errorService.displayErrorData(response)

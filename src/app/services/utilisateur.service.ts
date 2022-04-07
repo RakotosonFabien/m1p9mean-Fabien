@@ -24,7 +24,19 @@ export class UtilisateurService {
     console.log(lien)
     return this.http.get(lien, { headers: headers });
   }
-
+  getTokenUserAllowing() {
+    var token = localStorage.getItem('token')
+    if (token == null) {
+      this.router.navigateByUrl('login')
+    }
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+    var lien = ws_url + 'droit-utilisateur'
+    console.log(lien)
+    return this.http.get(lien, { headers: headers });
+  }
   findAll(urlDirection: string) {
     var users: any = this.http.get(ws_url + urlDirection);
     return users;
