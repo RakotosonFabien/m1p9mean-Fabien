@@ -1,18 +1,18 @@
-<app-header></app-header>
 <div class="container">
+  <app-header></app-header>
   <h1>Liste des plats</h1>
 
   <!----->
   <div class="row">
     <div class="card" style="width: 18rem;" *ngFor="let plat of plats">
-      <a href="fiche-plat/{{plat._id}}"><img class="card-img-top" src="{{plat.image}}" alt="Card image cap"></a>
+      <a href="fiche-plat/{{plat._id}}"><img class="card-img-top" src="{{plat.image}}" alt="Card image cap" width="100" height="200"></a>
       <div class="card-body">
         <h5 class="card-title">{{plat.nom}}</h5>
         <p class="card-text">Montant : {{plat.montant}}</p>
         <p class="card-text">Prix de revient : {{plat.montant_revient}}</p>
         <div *ngIf="commandePlat">
           <form #platPost="ngForm" (ngSubmit)="commanderPlat(platPost.value)">
-            <input type="hidden" name="id_plat" value="{{plat._id}}" ngModel/>
+            <input type="hidden" name="id_plat" value="{{plat._id}}" ngModel />
             <input type="number" placeholder="Quantite" name="quantite" value="0" ngModel />
             <button type="submit" class="btn btn-primary">Commander plat</button>
           </form>
@@ -27,5 +27,6 @@
       <button (click)="nouveauPlat()" class="btn btn-outline-success me-2">Ajouter un plat</button>
     </form>
   </nav>
+  <app-footer></app-footer>
 </div>
-<app-footer></app-footer>
+

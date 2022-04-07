@@ -16,6 +16,7 @@ require('./dotenv')
 const Utilisateur = require('./classes/Utilisateur')
 const WsRenderer = require('./classes/WsRenderer')
 const Plat = require('./classes/Plat')
+const CommandePlat = require('./classes/CommandePlat')
 // Replace process.env.DB_URL with your actual connection string
 const connectionString = process.env.DB_URL;
 MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client => {
@@ -45,9 +46,11 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
   })
   //commandes
   app.post('/commandes', (req, res) => {
-    var plat = new Plat()
-    plat.construct_data(req.body)
-    plat.insertPlat(req, res, db)
+    var commande = new CommandePlat()
+    console.log(req.body)
+    commande.insererCommande(db, req.body).then(function (resultat) {
+      res.json(new WsRenderer("Success", 200, resultat))
+    })
   })
   //quotes
   app.get('/quotes', (req, res) => {
