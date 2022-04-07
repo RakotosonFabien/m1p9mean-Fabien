@@ -1,1 +1,21 @@
-<p>index-client works!</p>
+<div class="container">
+  <app-header></app-header>
+  <h1>Nos restaurants</h1>
+  <!--LIste restos vaovao-->
+  <div class="row">
+    <div class="card" style="width: 18rem;" *ngFor="let resto of restos">
+      <img class="card-img-top" src="{{resto.image || 'assets/images/restaurant.png'}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{resto.nom}}</h5>
+        <a href="liste-plat?id_resto={{resto._id}}" class="btn btn-primary">Voir les plats</a>
+      </div>
+    </div>
+  </div>
+  <!--Fin liste restos vaovao-->
+  <nav class="navbar navbar-light bg-light">
+    <form class="container-fluid justify-content-start">
+      <button (click)="nouveauResto()" class="btn btn-outline-success me-2">Ajouter un restaurant</button>
+    </form>
+  </nav>
+</div>
+<app-footer></app-footer>

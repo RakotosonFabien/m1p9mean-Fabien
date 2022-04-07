@@ -13,6 +13,9 @@ export class UtilisateurService {
   constructor(private http: HttpClient, private toolsService: ToolsService, private router: Router ) { }
   getUserFromToken() {
     var token = localStorage.getItem('token')
+    if (token == null) {
+      this.router.navigateByUrl('login')
+    }
     const headers = {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`

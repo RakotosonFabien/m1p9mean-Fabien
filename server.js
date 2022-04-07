@@ -5,8 +5,8 @@ const path = require('path')
 const cors = require('cors')
 const app = express()
 var corsOptions = {
-  //origin : "http://localhost:4200"
-  origin : "https://m1p9mean-fabien.herokuapp.com:4200"
+  origin : "http://localhost:4200"
+  //origin : "https://m1p9mean-fabien.herokuapp.com:4200"
 }
 app.use(cors(corsOptions))
 app.use(bodyParser.urlencoded({ extended: true, limit : '50mb' }));
@@ -230,7 +230,18 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
       .catch(error => console.error(error))
   })
   //plats
-  app.get('/plat-resto/:idResto', (req, res) => {
+    app.get('/plats', (req, res) => {
+      db.collection('plat_complet').find(req.query).toArray()
+        .then(quotes => {
+          jsonReturn = new WsRenderer("Liste des categories de plats", 200, quotes)
+          res.json(jsonReturn.jsonReturn())
+        })
+        .catch(error => {
+          jsonReturn = new WsRenderer(error.message, 400)
+          res.json(jsonReturn.jsonReturn())
+        })
+    })
+   app.get('/plat-resto/:idResto', (req, res) => {
     var idResto = req.params.idResto
     var plat = new Plat()
     plat.getPlatResto(db, req.query, idResto).then(function (plats) {

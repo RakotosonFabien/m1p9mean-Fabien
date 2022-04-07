@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, UrlSerializer } from '@angular/router';
 import { ws_url } from '../../environments/environment';
 import { ToolsService } from './tools.service';
 @Injectable({
@@ -8,7 +8,7 @@ import { ToolsService } from './tools.service';
 })
 export class PlatService {
 
-  constructor(private http: HttpClient, private toolsService: ToolsService, private router: Router) { }
+  constructor(private http: HttpClient, private toolsService: ToolsService, private router: Router, private urlSerializer: UrlSerializer) { }
   insertPlat(data: any) {
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
@@ -26,9 +26,30 @@ export class PlatService {
     var observable = this.http.post(ws_url + 'plats', data, options);
     observable.subscribe(onSuccess, onError);
   }
-
+  findAll(data: any) {
+    var token = localStorage.getItem('token')
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+    var url = ws_url + 'plats' + this.serializeQuery(data)
+    var plats: any = this.http.get(url, { headers: headers });
+    console.log('GENERATED ==> ' + url)
+    return plats;
+  }
+  serializeQuery(queryParams: any) {
+    const tree = this.router.createUrlTree([], queryParams)
+    return this.urlSerializer.serialize(tree)
+  }
   findAllResto(idResto: any) {
-    var plats: any = this.http.get(ws_url + 'plat-resto/' + idResto);
+    console.log('LE MERDE' + idResto)
+    var token = localStorage.getItem('token')
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+    var plats: any = this.http.get(ws_url + 'plat-resto/' + idResto, { headers: headers });
+    console.log('LOVE ' + plats.nom)
     return plats;
   }
   getCategoriesPlat() {

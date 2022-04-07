@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ErrorService } from '../services/error.service';
 import { PlatService } from '../services/plat.service';
 import { UtilisateurService } from '../services/utilisateur.service';
@@ -12,7 +13,7 @@ import { UtilisateurService } from '../services/utilisateur.service';
 export class ListePlatComponent implements OnInit {
   plats : any
   user: any
-  constructor(private platService: PlatService, private utilisateurService: UtilisateurService, private errorService: ErrorService, private router : Router) { }
+  constructor(private platService: PlatService, private utilisateurService: UtilisateurService, private errorService: ErrorService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.setUser()
@@ -21,6 +22,7 @@ export class ListePlatComponent implements OnInit {
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
         this.user = response['data'][0]
+        console.log('tay' + this.user._id)
         this.refreshPlatList()
       }
       else {
@@ -43,8 +45,10 @@ export class ListePlatComponent implements OnInit {
     }
     const onError = (response: any) => {
     }
-    console.log('NOUVEAU ' + this.user)
-    this.platService.findAllResto(this.user._id).subscribe(onSuccess, onError)
+    this.platService.findAllResto(this.route.snapshot.params['id_resto']).subscribe(onSuccess, onError)
+  }
+  refreshPlatListV() {
+    
   }
   modifierPlat(idPlat: string) { }
   supprimerPlat(idPlat: string) { }

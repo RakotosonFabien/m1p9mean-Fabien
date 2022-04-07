@@ -1,4 +1,5 @@
 const { ObjectId } = require('mongodb');
+const Utilisateur = require('./Utilisateur')
 const WsRenderer = require('./WsRenderer');
 let Plat = class {
   constructor(_id, nom, image, id_user, id_cat_plat, montant) {
@@ -10,6 +11,12 @@ let Plat = class {
     this.id_user = data.id_user;
     this.id_cat_plat = data.id_cat_plat;
     this.montant = data.montant
+  }
+  getListePlats(db, data, tokenUser) {
+    var platCollection = db.collection('plat_complet')
+    data['plat_resto.id_resto'] = ObjectId(idResto)
+    console.log(data)
+    return platCollection.find(data).toArray()
   }
   getPlatResto(db, data, idResto) {
     var platCollection = db.collection('plat_complet')

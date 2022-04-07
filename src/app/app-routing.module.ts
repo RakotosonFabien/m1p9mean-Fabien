@@ -13,14 +13,10 @@ import { ListeRestoComponent } from './liste-resto/liste-resto.component';
 import { AjoutLivreurComponent } from './livreur/ajout-livreur/ajout-livreur.component';
 import { ListeLivreurComponent } from './livreur/liste-livreur/liste-livreur.component';
 import { LoginComponent } from './login/login.component';
-import { QuoteComponent } from './quote/quote.component';
 
 const routes: Routes = [
   {
     path: '', component: IndexRoutingComponent
-  },
-  {
-    path: 'quotes', component: QuoteComponent
   },
   {
     path: 'login', component: LoginComponent
@@ -57,6 +53,9 @@ const routes: Routes = [
   },
   {
     path: 'liste-livreur', component: ListeLivreurComponent
+  },
+  {
+    path: 'liste-plat-resto/:id_resto', component: ListePlatComponent
   }
 ];
 

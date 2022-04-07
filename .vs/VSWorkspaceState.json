@@ -1,14 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\bdd",
-    "\\bin",
     "\\src",
-    "\\src\\app\\livreur",
-    "\\src\\app\\livreur\\ajout-livreur",
+    "\\src\\app",
+    "\\src\\app\\liste-plat",
+    "\\src\\app\\services",
     "\\src\\assets",
-    "\\src\\environments"
+    "\\src\\environments",
+    "\\views"
   ],
-  "SelectedNode": "\\src\\environments\\environment.ts",
+  "SelectedNode": "\\src\\app\\liste-plat\\liste-plat.component.ts",
   "PreviewInSolutionExplorer": false
 }

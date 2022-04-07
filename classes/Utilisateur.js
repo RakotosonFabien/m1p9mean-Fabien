@@ -14,9 +14,9 @@ let Utilisateur = class {
     this.image = data.image
   }
   //get token from requeest
-  static getToken(req) {
-    var token = 'token'
-    return token
+  static getRequestToken(req) {
+    var tokenUser = req.headers.authorization.split('Bearer ')[1]
+    return tokenUser
   }
   //login test
   testLogin(db) {

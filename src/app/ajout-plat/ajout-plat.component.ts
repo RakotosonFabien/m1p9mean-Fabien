@@ -9,7 +9,7 @@ import { Observable, Subscriber } from 'rxjs';
   selector: 'app-ajout-plat',
   templateUrl: './ajout-plat.component.html',
   styleUrls: ['./ajout-plat.component.css']
-})
+}) 
 export class AjoutPlatComponent implements OnInit {
   cat_plat: any
   myImage : any
