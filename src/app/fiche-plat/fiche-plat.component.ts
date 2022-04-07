@@ -1,29 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 import { ErrorService } from '../services/error.service';
 import { PlatService } from '../services/plat.service';
 import { UtilisateurService } from '../services/utilisateur.service';
 
 @Component({
-  selector: 'app-liste-plat',
-  templateUrl: './liste-plat.component.html',
-  styleUrls: ['./liste-plat.component.css']
+  selector: 'app-fiche-plat',
+  templateUrl: './fiche-plat.component.html',
+  styleUrls: ['./fiche-plat.component.css']
 })
-export class ListePlatComponent implements OnInit {
-  plats : any
+export class FichePlatComponent implements OnInit {
+  plat: any
   commandePlat: boolean = false
-  constructor(private platService: PlatService, private utilisateurService: UtilisateurService, private errorService: ErrorService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private platService: PlatService, private utilisateurService: UtilisateurService, private errorService: ErrorService) { }
 
   ngOnInit(): void {
-    //this.setUser()
     this.setDroitsUser()
-    this.refreshPlatList()
+    this.setPlatById()
   }
-  commanderPlat(data: any) {
-    this.platService.commanderPlat(data)
-  }
-  //
   setDroitsUser() {
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
@@ -38,25 +32,18 @@ export class ListePlatComponent implements OnInit {
     }
     this.utilisateurService.getTokenUserAllowing().subscribe(onSuccess, onError)
   }
-  refreshPlatList() {
+  setPlatById() {
+    var idPlat = this.route.snapshot.params['id_plat']
     const onSuccess = (response: any) => {
       console.log(response['meta']['status'])
       if (response['meta']['status'] == 200) {
-        this.plats = response['data'];
+        this.plat = response['data'][0];
       } else {
       }
-      console.log(this.plats)
     }
     const onError = (response: any) => {
     }
-    this.platService.findAllResto(this.route.snapshot.params['id_resto']).subscribe(onSuccess, onError)
+    this.platService.findPlatById(idPlat).subscribe(onSuccess, onError)
   }
-  refreshPlatListV() {
-    
-  }
-  modifierPlat(idPlat: string) { }
-  supprimerPlat(idPlat: string) { }
-  nouveauPlat() {
-    this.router.navigateByUrl('ajout-plat')
-  }
+
 }

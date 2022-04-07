@@ -18,13 +18,25 @@
     </div>
     <div class="row">
       <div class="mb-3">
+        <label for="montant" class="form-label">Montant</label>
+        <input name="montant" type="number" class="form-control" id="nom" placeholder="Montant" ngModel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3">
+        <label for="montant_revient" class="form-label">Prix de revient</label>
+        <input name="montant_revient" type="number" class="form-control" id="montant_revient" placeholder="Prix de revient" ngModel>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3">
         <label class="form-label" for="image">Image</label>
-        <input name="image" type="file" class="form-control" id="image" (change)="imageChanged($event)" ngModel/>
+        <input name="image" type="file" class="form-control" id="image" (change)="imageChanged($event)" ngModel />
       </div>
       <div *ngIf="myImage">
         <img src="{{myImage}}" width="200" height="200" alt="" />
       </div>
-      
+
     </div>
     <div class="row">
       <div class="col-auto">

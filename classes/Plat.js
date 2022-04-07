@@ -2,7 +2,7 @@ const { ObjectId } = require('mongodb');
 const Utilisateur = require('./Utilisateur')
 const WsRenderer = require('./WsRenderer');
 let Plat = class {
-  constructor(_id, nom, image, id_user, id_cat_plat, montant) {
+  constructor(_id, nom, image, id_user, id_cat_plat, montant, montant_revient) {
     //constructor() {
   }
   construct_data(data) {
@@ -10,7 +10,8 @@ let Plat = class {
     this.image = data.image;
     this.id_user = data.id_user;
     this.id_cat_plat = data.id_cat_plat;
-    this.montant = data.montant
+    this.montant = data.montant;
+    this.montant_revient = data.montant_revient;
   }
   getListePlats(db, data, tokenUser) {
     var platCollection = db.collection('plat_complet')
@@ -33,7 +34,9 @@ let Plat = class {
       image: this.image,
       id_user: ObjectId(this.id_user),
       supprime: false,
-      id_cat_plat : ObjectId(this.id_cat_plat)
+      id_cat_plat: ObjectId(this.id_cat_plat),
+      montant: this.montant,
+      montant_revient: this.montant_revient
     }
     platCollection.insertOne(platBody).then(result => {
       this._id = result.insertedId

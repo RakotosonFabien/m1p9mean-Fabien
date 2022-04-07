@@ -5,11 +5,17 @@
   <!----->
   <div class="row">
     <div class="card" style="width: 18rem;" *ngFor="let plat of plats">
-      <img class="card-img-top" src="{{plat.image}}" alt="Card image cap">
+      <a href="fiche-plat/{{plat._id}}"><img class="card-img-top" src="{{plat.image}}" alt="Card image cap"></a>
       <div class="card-body">
         <h5 class="card-title">{{plat.nom}}</h5>
+        <p class="card-text">Montant : {{plat.montant}}</p>
+        <p class="card-text">Prix de revient : {{plat.montant_revient}}</p>
         <div *ngIf="commandePlat">
-          <a href="#" class="btn btn-primary">Commander plat</a>
+          <form #platPost="ngForm" (ngSubmit)="commanderPlat(platPost.value)">
+            <input type="hidden" name="id_plat" value="{{plat._id}}" ngModel/>
+            <input type="number" placeholder="Quantite" name="quantite" value="0" ngModel />
+            <button type="submit" class="btn btn-primary">Commander plat</button>
+          </form>
         </div>
 
       </div>

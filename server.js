@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser')
+const { ObjectId } = require('mongodb');
 const MongoClient = require('mongodb').MongoClient
 const path = require('path')
 const cors = require('cors')
@@ -41,6 +42,12 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
     //    res.render('index.ejs', { quotes: quotes })
     //  })
     //  .catch(/* ... */)
+  })
+  //commandes
+  app.post('/commandes', (req, res) => {
+    var plat = new Plat()
+    plat.construct_data(req.body)
+    plat.insertPlat(req, res, db)
   })
   //quotes
   app.get('/quotes', (req, res) => {
@@ -243,6 +250,22 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
       .catch(error => console.error(error))
   })
   //plats
+  app.get('/plats/:idPlat', (req, res) => {
+    var idPlat = req.params.idPlat
+    var data = req.query
+    data['_id'] = ObjectId(idPlat)
+    db.collection('plat_complet').find(data).toArray().then(function (plats) {
+      if (plats != null) {
+        res.json(new WsRenderer("Requete liste des plats reussi", 200, plats).jsonReturn())
+      }
+      else {
+        res.json(new WsRenderer("Requete liste des plats echoue, plats null", 400).jsonReturn())
+      }
+    })
+      .catch(error => {
+        res.json(new WsRenderer(error.message, 400).jsonReturn())
+      })
+  })
     app.get('/plats', (req, res) => {
       db.collection('plat_complet').find(req.query).toArray()
         .then(quotes => {
@@ -274,6 +297,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
     plat.construct_data(req.body)
     plat.insertPlat(req, res, db)
   })
+  
 //ending routes
 })
 

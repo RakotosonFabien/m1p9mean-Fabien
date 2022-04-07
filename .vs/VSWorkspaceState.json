@@ -1,14 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\classes",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\liste-plat",
-    "\\src\\app\\services",
     "\\src\\assets",
     "\\src\\environments",
     "\\views"
   ],
-  "SelectedNode": "\\src\\app\\liste-plat\\liste-plat.component.ts",
+  "SelectedNode": "\\classes\\CommandePlat.js",
   "PreviewInSolutionExplorer": false
 }

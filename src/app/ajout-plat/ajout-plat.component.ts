@@ -12,11 +12,26 @@ import { Observable, Subscriber } from 'rxjs';
 }) 
 export class AjoutPlatComponent implements OnInit {
   cat_plat: any
-  myImage : any
+  myImage: any
+  idResto : any
   constructor(private platService: PlatService, private errorService: ErrorService, private router: Router, private utilisateurService: UtilisateurService) { }
 
   ngOnInit(): void {
     this.getCategoriesPlat()
+    this.setIdResto()
+  }
+  setIdResto() {
+    const onSuccess = (response: any) => {
+      if (response['meta']['status'] == 200) {
+        this.idResto = response['data'][0]['_id']
+      } else {
+        console.warn(response)
+      }
+    }
+    const onError = (response: any) => {
+      console.log("err");
+    }
+    this.utilisateurService.getUserFromToken().subscribe(onSuccess, onError)
   }
   getCategoriesPlat() {
     const onSuccess = (response: any) => {
@@ -36,8 +51,7 @@ export class AjoutPlatComponent implements OnInit {
       if (response['meta']['status'] == 200) {
         data['id_user'] = response['data'][0]['_id']
         data['image'] = this.myImage
-        this.platService.insertPlat(data)
-        this.router.navigateByUrl('liste-plat')
+        this.platService.insertPlat(data, this.idResto)
       } else {
         // status 400
         console.warn(response)

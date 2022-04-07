@@ -1,0 +1,16 @@
+<div class="container">
+  <app-header></app-header>
+  <div class="row">
+    <div class="card" style="width: 18rem;">
+      <a href="fiche-plat/{{plat._id}}"><img class="card-img-top" src="{{plat.image}}" alt="Card image cap"></a>
+      <div class="card-body">
+        <h5 class="card-title">{{plat.nom}}</h5>
+        <div *ngIf="commandePlat">
+          <a href="#" class="btn btn-primary">Commander plat</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

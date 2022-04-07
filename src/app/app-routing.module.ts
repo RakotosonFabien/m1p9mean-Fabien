@@ -56,6 +56,9 @@ const routes: Routes = [
   },
   {
     path: 'liste-plat-resto/:id_resto', component: ListePlatComponent
+  },
+  {
+    path: 'fiche-plat/:id_plat', component: ListePlatComponent
   }
 ];
 
