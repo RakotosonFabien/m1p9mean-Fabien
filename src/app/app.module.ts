@@ -22,6 +22,13 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { AjoutLivreurComponent } from './livreur/ajout-livreur/ajout-livreur.component';
 import { ListeLivreurComponent } from './livreur/liste-livreur/liste-livreur.component';
+import { FichePlatVaovaoComponent } from './fiche-plat-vaovao/fiche-plat-vaovao.component';
+import { CommandeEnCoursComponent } from './commande-en-cours/commande-en-cours.component';
+import { BeneficeRestoComponent } from './benefice-resto/benefice-resto.component';
+import { MonPanierComponent } from './mon-panier/mon-panier.component';
+import { BeneficeTotalComponent } from './benefice-total/benefice-total.component';
+import { CommandeEkalyComponent } from './commande-ekaly/commande-ekaly.component';
+import { MesAchatsComponent } from './mes-achats/mes-achats.component';
 
 
 @NgModule({
@@ -42,7 +49,14 @@ import { ListeLivreurComponent } from './livreur/liste-livreur/liste-livreur.com
     FooterComponent,
     HeaderComponent,
     AjoutLivreurComponent,
-    ListeLivreurComponent
+    ListeLivreurComponent,
+    FichePlatVaovaoComponent,
+    CommandeEnCoursComponent,
+    BeneficeRestoComponent,
+    MonPanierComponent,
+    BeneficeTotalComponent,
+    CommandeEkalyComponent,
+    MesAchatsComponent
   ],
   imports: [
     BrowserModule,

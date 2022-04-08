@@ -1,28 +1,45 @@
 <div class="container">
   <app-header></app-header>
   <h1>Liste des plats</h1>
-
-  <!----->
+  <div class="row">
+    <form>
+      <input type="text" placeholder="Nom plat">
+      <button type="submit">Search image</button>
+    </form>
+    <form>
+      <select>
+        <option>Nom</option>
+        <option>Montant</option>
+      </select>
+      <select>
+        <option>Croissant</option>
+        <option>Decroissant</option>
+      </select>
+      <button>Trier</button>
+    </form>
+  </div>
   <div class="row">
     <div class="card" style="width: 18rem;" *ngFor="let plat of plats">
-      <a href="fiche-plat/{{plat._id}}"><img class="card-img-top" src="{{plat.image}}" alt="Card image cap" width="100" height="200"></a>
+      <a href="fiche-plat/{{idResto}}/{{plat._id}}"><img class="card-img-top" src="{{plat.image}}" alt="Card image cap" width="100" height="200"></a>
       <div class="card-body">
         <h5 class="card-title">{{plat.nom}}</h5>
         <p class="card-text">Montant : {{plat.montant}}</p>
-        <p class="card-text">Prix de revient : {{plat.montant_revient}}</p>
-        <div *ngIf="commandePlat">
+        <p *ngIf="droits.affichageRevient" class="card-text">Prix de revient : {{plat.montant_revient}}</p>
+        <div *ngIf="droits.commandePlat">
           <form #platPost="ngForm" (ngSubmit)="commanderPlat(platPost.value)">
             <input type="hidden" name="id_plat" value="{{plat._id}}" ngModel />
+            <input type="hidden" name="id_client" value="{{idUser}}" ngModel />
+            <input type="hidden" name="id_resto" value="{{idResto}}" ngModel />
             <input type="number" placeholder="Quantite" name="quantite" value="0" ngModel />
             <button type="submit" class="btn btn-primary">Commander plat</button>
           </form>
         </div>
-
+        <p *ngIf="droits.modifPlat">Image modifier - Image supprimer - Bouton valider modif</p>
       </div>
     </div>
   </div>
   <!--nouveau plat-->
-  <nav class="navbar navbar-light bg-light">
+  <nav *ngIf="droits.ajoutPlat" class="navbar navbar-light bg-light">
     <form class="container-fluid justify-content-start">
       <button (click)="nouveauPlat()" class="btn btn-outline-success me-2">Ajouter un plat</button>
     </form>

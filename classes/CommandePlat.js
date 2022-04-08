@@ -26,7 +26,7 @@ let CommandePlat = class {
     if (data.id_commande == null) {
       console.log('COMMANDE NUll')
       var idC = ''
-      data.id_commande = this.creerNouveauCommande(db, data).then(function (response) {
+      return data.id_commande = this.creerNouveauCommande(db, data).then(function (response) {
         console.log('INSERTED' + response.insertedId)
         idC = response.insertedId
         return CommandePlat.insererCommandePlat(db, data, response.insertedId).then(function (commandePlat) {
@@ -49,7 +49,7 @@ let CommandePlat = class {
   }
   creerNouveauCommande(db, data) {
     var values = {
-      date_commande: Date.now(),
+      date_commande: new Date(),
       etat: 'cree',
       id_client: ObjectId(data.id_client),
       id_resto: ObjectId(data.id_resto)

@@ -44,6 +44,8 @@ export class LoginComponent implements OnInit {
       if (response['meta']['status'] == 200) {
         localStorage.setItem('token', response['data']['token'])
         localStorage.setItem('id_type_u', response['data']['id_type_u'])
+        localStorage.setItem('id_user', response['data']['_id'])
+        console.log('USER ' + localStorage.getItem('id_user'))
         var url = this.urlLogin(response['data']['id_type_u'])
         this.router.navigateByUrl(url)
       } else {

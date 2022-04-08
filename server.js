@@ -44,12 +44,40 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
     //  })
     //  .catch(/* ... */)
   })
+  //send mail
+  app.get('/send-mail', (req, res) => {
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'rakoson.fabien.10@gmail.com',
+        pass: 'rakotosonfabien10'
+      }
+    });
+
+    var mailOptions = {
+      from: 'rakotoson.fabien.10@gmail.com',
+      to: 'rakotosonfabienmaminirina@gmail.com',
+      subject: 'Sending Email using Node.js',
+      text: 'That was easy!'
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        res.json(error)
+        console.log(error);
+      } else {
+        res.json('Email sent: ' + info.response);
+      }
+    });
+  })
   //commandes
   app.post('/commandes', (req, res) => {
     var commande = new CommandePlat()
     console.log(req.body)
     commande.insererCommande(db, req.body).then(function (resultat) {
-      res.json(new WsRenderer("Success", 200, resultat))
+      res.json(new WsRenderer("Success", 200, resultat).jsonReturn())
     })
   })
   //quotes
@@ -124,7 +152,8 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
       if (auth != null) {
         wsRenderer = new WsRenderer("Login success", 200, {
           token: auth.auth_utilisateur[0].token,
-          id_type_u: auth.id_type_u
+          id_type_u: auth.id_type_u,
+          _id : auth._id
         })
       }
       else {

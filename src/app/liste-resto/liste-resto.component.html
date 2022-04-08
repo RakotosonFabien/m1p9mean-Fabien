@@ -1,12 +1,30 @@
 <div class="container">
+  <app-header></app-header>
   <h1>Liste des restaurants</h1>
+  <div class="row">
+    <form>
+      <input type="text" placeholder="Nom plat">
+      <button type="submit">Search image</button>
+    </form>
+    <form>
+      <select>
+        <option>Nom</option>
+        <option>Montant</option>
+      </select>
+      <select>
+        <option>Croissant</option>
+        <option>Decroissant</option>
+      </select>
+      <button>Trier</button>
+    </form>
+  </div>
   <!--LIste restos vaovao-->
   <div class="row">
     <div class="card" style="width: 18rem;" *ngFor="let resto of restos">
       <img class="card-img-top" src="{{resto.image || 'assets/images/restaurant.png'}}" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">{{resto.nom}}</h5>
-        <a href="#" class="btn btn-primary">Ajout plat ici</a>
+        <a href="liste-plat-resto/{{resto._id}}" class="btn btn-primary">Voir plats</a>
       </div>
     </div>
   </div>
@@ -16,4 +34,5 @@
       <button (click)="nouveauResto()" class="btn btn-outline-success me-2">Ajouter un restaurant</button>
     </form>
   </nav>
+  <app-footer></app-footer>
 </div>

@@ -1,13 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\classes",
     "\\src",
     "\\src\\app",
-    "\\src\\assets",
-    "\\src\\environments",
-    "\\views"
+    "\\src\\app\\index-ekaly",
+    "\\src\\app\\index-livreur",
+    "\\src\\app\\index-resto",
+    "\\src\\app\\liste-plat",
+    "\\src\\app\\livreur",
+    "\\src\\app\\livreur\\liste-livreur",
+    "\\src\\environments"
   ],
-  "SelectedNode": "\\classes\\CommandePlat.js",
+  "SelectedNode": "\\src\\app\\livreur\\liste-livreur\\liste-livreur.component.html",
   "PreviewInSolutionExplorer": false
 }

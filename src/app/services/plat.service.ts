@@ -7,7 +7,6 @@ import { ToolsService } from './tools.service';
   providedIn: 'root'
 })
 export class PlatService {
-
   constructor(private http: HttpClient, private toolsService: ToolsService, private router: Router, private urlSerializer: UrlSerializer) { }
 
   findPlatById(idPlat : string) {
@@ -17,13 +16,19 @@ export class PlatService {
       'Authorization': `Bearer ${token}`
     }
     var url = ws_url + 'plats/' + idPlat
+    console.log(url)
     var plats: any = this.http.get(url, { headers: headers });
     return plats;
   }
-  commanderPlat(data : any) {
+  commanderPlat(data: any) {
+    if (localStorage.getItem('id_commande') != null) {
+      data['id_commande'] = localStorage.getItem('id_commande')
+      console.log('VAOVAO FARANY ' + data)
+    }
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
-
+        console.log('OVAY LE LOCAL FA TSSS')
+        localStorage.setItem('id_commande', response['data']['id_commande'])
       } else {
         // status 400
         console.warn(response)

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { ErrorService } from '../services/error.service';
 import { PlatService } from '../services/plat.service';
 import { UtilisateurService } from '../services/utilisateur.service';
@@ -12,14 +11,18 @@ import { UtilisateurService } from '../services/utilisateur.service';
 })
 export class ListePlatComponent implements OnInit {
   plats : any
-  commandePlat: boolean = false
+  droits : any
+  idUser: any = ''
+  idResto : string = ''
   constructor(private platService: PlatService, private utilisateurService: UtilisateurService, private errorService: ErrorService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    //this.setUser()
+    this.idUser = localStorage.getItem('id_user')
+    this.idResto = this.route.snapshot.params['id_resto']
     this.setDroitsUser()
     this.refreshPlatList()
   }
+
   commanderPlat(data: any) {
     this.platService.commanderPlat(data)
   }
@@ -27,7 +30,7 @@ export class ListePlatComponent implements OnInit {
   setDroitsUser() {
     const onSuccess = (response: any) => {
       if (response['meta']['status'] == 200) {
-        this.commandePlat = response['data']['commandePlat']
+        this.droits = response['data']
       }
       else {
         this.errorService.displayErrorData(response)

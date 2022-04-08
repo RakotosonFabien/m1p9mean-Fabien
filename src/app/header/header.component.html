@@ -1,3 +1,17 @@
-<nav class="nav nav-pills flex-column flex-sm-row">
-  <button class="flex-sm-fill text-sm-center nav-link" (click)="deconnexion()">Deconnexion</button>
-</nav>
+<div class="row">
+  <div class="col-md-8">
+    <nav class="nav nav-pills flex-column flex-sm-row">
+      <button class="flex-sm-fill text-sm-center nav-link" (click)="deconnexion()">Deconnexion</button>
+
+    </nav>
+  </div>
+  <div class="col-md-2">
+      <a *ngIf="droits.panier" href="mon-panier" class="btn btn-primary position-relative">
+        <img src="assets/images/panier.png" width="50" height="40" />
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          9
+        </span>
+      </a>
+    
+  </div>
+</div>

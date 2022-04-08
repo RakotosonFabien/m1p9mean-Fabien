@@ -1,0 +1,19 @@
+<div class="container">
+  <app-header></app-header>
+  <div class="row">
+    <div class="card" style="width: 18rem;">
+      <a href="fiche-plat/{{idResto}}/{{plat._id}}"><img class="card-img-top" src="{{plat.image}}" alt="Card image cap"></a>
+      <div class="card-body">
+        <h5 class="card-title">{{plat.nom}}</h5>
+        <div *ngIf="droits.commandePlat">
+          <form #platVaovao="ngForm" (ngSubmit)="commanderPlat(platVaovao.value)">
+            <input type="number" placeholder="Quantite" name="quantite" value="0" ngModel />
+            <button type="submit" class="btn btn-primary">Commander plat</button>
+          </form>
+        </div>
+        <p *ngIf="droits.modifPlat">Image modifier - Image supprimer - Bouton valider modif</p>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
