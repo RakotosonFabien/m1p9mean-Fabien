@@ -12,6 +12,27 @@ var corsOptions = {
 app.use(cors(corsOptions))
 app.use(bodyParser.urlencoded({ extended: true, limit : '50mb' }));
 require('./dotenv')
+//
+app.get('/login', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/inscription', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/index-client', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/index-resto', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/index-livreur', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/index-ekaly', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/liste-resto', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/nouveau-resto', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/liste-plat', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/ajout-plat', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/ajout-livreur', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/liste-livreur', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/liste-plat-resto/:id-resto', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/commande-en-cours', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/benefice-resto', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/mon-panier', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/benefice-total', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+app.get('/tous-les-commandes', (req, res) => res.sendFile(path.join(__dirname, '/dist/node-express-angular/index.html')));
+
 //myClasses
 const Utilisateur = require('./classes/Utilisateur')
 const WsRenderer = require('./classes/WsRenderer')
@@ -45,13 +66,13 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true }).then(client 
     //  .catch(/* ... */)
   })
   //send mail
-  app.get('/send-mail', (req, res) => {
+  app.post('/sendmail', (req, res) => {
     var nodemailer = require('nodemailer');
 
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'rakoson.fabien.10@gmail.com',
+        user: 'rakotoson.fabien.10@gmail.com',
         pass: 'rakotosonfabien10'
       }
     });

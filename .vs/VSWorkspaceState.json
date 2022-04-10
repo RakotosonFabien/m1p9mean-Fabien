@@ -2,15 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\app",
-    "\\src\\app\\index-ekaly",
-    "\\src\\app\\index-livreur",
-    "\\src\\app\\index-resto",
-    "\\src\\app\\liste-plat",
-    "\\src\\app\\livreur",
-    "\\src\\app\\livreur\\liste-livreur",
     "\\src\\environments"
   ],
-  "SelectedNode": "\\src\\app\\livreur\\liste-livreur\\liste-livreur.component.html",
+  "SelectedNode": "\\secrets",
   "PreviewInSolutionExplorer": false
 }
